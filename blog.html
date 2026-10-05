@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog – FarmFresh Meats | Recipes, Farm Stories & Meat Tips</title>
+  <meta name="description" content="Explore FarmFresh Meats blog for farm-to-table recipes, meat preparation tips, farm partner stories, and nutrition guides." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .blog-layout { display:grid; grid-template-columns:1fr 340px; gap:48px; }
+    .blog-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:28px; }
+    .blog-sidebar { display:flex; flex-direction:column; gap:24px; }
+    .blog-sidebar .sd-widget { background:var(--surface); border-radius:var(--radius-lg); padding:24px; border:1px solid var(--border); }
+    .blog-sidebar .sd-widget h4 { font-size:1rem; margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid var(--border); }
+    .category-list { display:flex; flex-direction:column; gap:8px; }
+    .category-list a { display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border-radius:var(--radius-sm); color:var(--text-muted); font-size:0.9rem; transition:all var(--transition); border:1px solid var(--border); }
+    .category-list a:hover { background:rgba(45,106,79,0.08); color:var(--primary); border-color:var(--primary); }
+    .category-list a span { background:var(--bg-alt); padding:2px 10px; border-radius:50px; font-size:0.78rem; font-weight:600; }
+    .recent-post { display:flex; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--border); }
+    .recent-post:last-child { border-bottom:none; }
+    .recent-post img { width:64px; height:64px; border-radius:var(--radius-sm); object-fit:cover; flex-shrink:0; }
+    .recent-post-info h5 { font-size:0.88rem; margin-bottom:4px; line-height:1.4; }
+    .recent-post-info span { font-size:0.78rem; color:var(--text-muted); }
+    .tag-cloud { display:flex; flex-wrap:wrap; gap:8px; }
+    .tag-cloud a { padding:6px 14px; background:var(--bg-alt); border:1px solid var(--border); border-radius:50px; font-size:0.8rem; color:var(--text-muted); transition:all var(--transition); }
+    .tag-cloud a:hover { background:var(--primary); color:#fff; border-color:var(--primary); }
+    .blog-featured { background:var(--surface); border-radius:var(--radius-xl); overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow-md); margin-bottom:36px; display:grid; grid-template-columns:1fr 1fr; }
+    .blog-featured-img { height:380px; overflow:hidden; }
+    .blog-featured-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease; }
+    .blog-featured:hover .blog-featured-img img { transform:scale(1.04); }
+    .blog-featured-body { padding:40px; display:flex; flex-direction:column; justify-content:center; }
+    .pagination { display:flex; align-items:center; gap:8px; justify-content:center; margin-top:48px; }
+    .popular-topics { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:100%; }
+    .page-btn { width:40px; height:40px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; font-size:0.9rem; font-weight:600; border:2px solid var(--border); color:var(--text-muted); transition:all var(--transition); cursor:pointer; background:var(--surface); font-family:var(--font-body); }
+    .page-btn:hover, .page-btn.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+    .page-btn.wide { width:auto; padding:0 16px; }
+    @media(max-width:1024px) { .blog-layout{grid-template-columns:1fr;} .blog-featured{grid-template-columns:1fr;} .blog-featured-img{height:260px;} .popular-topics{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:640px) { .blog-grid{grid-template-columns:1fr;} }
+    @media(max-width:480px) { .blog-featured-body{padding:24px 20px;} .blog-card-body{padding:20px;} .popular-topics{grid-template-columns:1fr;} }
+    @media(max-width:360px) { .blog-featured-img{height:200px;} .blog-meta{flex-wrap:wrap;gap:8px;} }
+  </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="index.html" class="nav-logo"><span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span><span class="logo-text">Farm<strong>Fresh</strong> Meats</span></a>
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="home2.html" class="nav-link">Home 2</a></li>
+      <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+      <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+      <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <div class="profile-menu">
+        <button class="profile-toggle" id="profileToggle" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"><i class="fas fa-circle-user"></i></button>
+        <ul class="profile-dropdown">
+          <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+          <li><a href="dashboard.html"><i class="fas fa-user"></i> User Dashboard</a></li>
+          <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Dashboard</a></li>
+        </ul>
+      </div>
+      <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to right-to-left layout" aria-pressed="false" title="RTL">RTL</button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&q=80');">
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <h1>Farm Stories &amp; Recipes</h1>
+    <p>Tips, guides, farm updates and chef-curated recipes from the FarmFresh kitchen and fields.</p>
+    <div class="hero-ctas">
+      <a href="login.html#register" class="btn btn-primary">Start Your Subscription</a>
+      <a href="services.html" class="btn btn-ghost">Explore Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: FEATURED POST -->
+<section class="section" style="padding-bottom:0;">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:32px;" data-aos="fade-up">
+      <span class="section-tag">Featured Post</span>
+    </div>
+    <div class="blog-featured" data-aos="fade-up">
+      <div class="blog-featured-img">
+        <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800&q=80" alt="The Ultimate Guide to Dry-Aging Beef at Home" loading="lazy" />
+      </div>
+      <div class="blog-featured-body">
+        <div class="blog-meta" style="margin-bottom:16px;">
+          <span class="blog-category">Meat Guide</span>
+          <span class="blog-date"><i class="fas fa-calendar"></i> Sep 28, 2026</span>
+          <span class="blog-date"><i class="fas fa-clock"></i> 8 min read</span>
+        </div>
+        <h2 style="font-size:1.5rem;margin-bottom:14px;"><a href="blog-details.html" style="transition:color var(--transition);" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color=''">The Ultimate Guide to Dry-Aging Beef at Home</a></h2>
+        <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.75;margin-bottom:24px;">Dry-aging develops extraordinary depth of flavor in beef — that nutty, buttery complexity you get at fine steakhouses. Here's how to recreate it with your FarmFresh cuts using a simple setup at home.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div class="blog-author-mini">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80" alt="Marcus Webb" />
+            <span>Marcus Webb, Head Butcher</span>
+          </div>
+          <a href="blog-details.html" class="btn btn-primary btn-sm">Read Full Article</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: BLOG GRID + SIDEBAR -->
+<section class="section">
+  <div class="container">
+    <div class="blog-layout">
+      <div>
+        <!-- Filter bar -->
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;" data-aos="fade-up">
+          <button class="filter-btn active" data-filter="all">All Posts</button>
+          <button class="filter-btn" data-filter="recipes">Recipes</button>
+          <button class="filter-btn" data-filter="farm-stories">Farm Stories</button>
+          <button class="filter-btn" data-filter="guides">Meat Guides</button>
+          <button class="filter-btn" data-filter="nutrition">Nutrition</button>
+        </div>
+        <div class="blog-grid" id="blogGrid">
+          <div class="blog-card" data-category="recipes" data-aos="fade-up">
+            <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&q=80" alt="Perfect Ribeye" loading="lazy" /></div>
+            <div class="blog-card-body">
+              <div class="blog-meta"><span class="blog-category">Recipe</span><span class="blog-date"><i class="fas fa-calendar"></i> Sep 25, 2026</span></div>
+              <h3><a href="blog-details.html">How to Cook the Perfect Ribeye: A 5-Step Method</a></h3>
+              <p>Cast iron, butter basting, and the reverse sear technique — we break down every step to a restaurant-quality steak at home.</p>
+              <div class="blog-footer"><div class="blog-author-mini"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&q=80" alt="Chef Anna" /><span>Chef Anna K.</span></div><a href="blog-details.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+          <div class="blog-card" data-category="farm-stories" data-aos="fade-up" data-aos-delay="100">
+            <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=500&q=80" alt="Willow Creek Farm" loading="lazy" /></div>
+            <div class="blog-card-body">
+              <div class="blog-meta"><span class="blog-category" style="background:rgba(212,160,23,0.1);color:var(--accent);">Farm Story</span><span class="blog-date"><i class="fas fa-calendar"></i> Sep 20, 2026</span></div>
+              <h3><a href="blog-details.html">Meet the Hansen Family: 40 Years of Regenerative Farming</a></h3>
+              <p>Three generations of the Hansen family have farmed Willow Creek's 800 acres using traditional, sustainable practices that restore the land.</p>
+              <div class="blog-footer"><div class="blog-author-mini"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt="Tom Hansen" /><span>Tom Hansen</span></div><a href="blog-details.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+          <div class="blog-card" data-category="nutrition" data-aos="fade-up">
+            <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80" alt="Grass-fed nutrition" loading="lazy" /></div>
+            <div class="blog-card-body">
+              <div class="blog-meta"><span class="blog-category" style="background:rgba(41,128,185,0.1);color:#2980b9;">Nutrition</span><span class="blog-date"><i class="fas fa-calendar"></i> Sep 15, 2026</span></div>
+              <h3><a href="blog-details.html">Grass-Fed vs. Grain-Fed: The Science Behind the Difference</a></h3>
+              <p>Omega-3 ratios, CLA content, vitamins — we dive into peer-reviewed research on why the way animals eat matters for your health.</p>
+              <div class="blog-footer"><div class="blog-author-mini"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" alt="Dr. Priya" /><span>Dr. Priya S., RD</span></div><a href="blog-details.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+          <div class="blog-card" data-category="guides" data-aos="fade-up" data-aos-delay="100">
+            <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=500&q=80" alt="Pork guide" loading="lazy" /></div>
+            <div class="blog-card-body">
+              <div class="blog-meta"><span class="blog-category" style="background:rgba(192,57,43,0.1);color:var(--red-meat);">Meat Guide</span><span class="blog-date"><i class="fas fa-calendar"></i> Sep 10, 2026</span></div>
+              <h3><a href="blog-details.html">Heritage Pork 101: Breeds, Cuts, and Why It Tastes Different</a></h3>
+              <p>Berkshire, Duroc, Tamworth — here's what makes heritage pork breeds so special and how to cook each cut to its full potential.</p>
+              <div class="blog-footer"><div class="blog-author-mini"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80" alt="Marcus" /><span>Marcus Webb</span></div><a href="blog-details.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+          <div class="blog-card" data-category="recipes" data-aos="fade-up">
+            <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1604908177453-7462950a6a3b?w=500&q=80" alt="Lamb recipe" loading="lazy" /></div>
+            <div class="blog-card-body">
+              <div class="blog-meta"><span class="blog-category">Recipe</span><span class="blog-date"><i class="fas fa-calendar"></i> Sep 5, 2026</span></div>
+              <h3><a href="blog-details.html">Herb-Crusted Rack of Lamb with Dijon and Fresh Rosemary</a></h3>
+              <p>A showstopping centerpiece for any dinner party. Our farm-fresh rack of lamb pairs beautifully with a classic French herb crust.</p>
+              <div class="blog-footer"><div class="blog-author-mini"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&q=80" alt="Chef Anna" /><span>Chef Anna K.</span></div><a href="blog-details.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+          <div class="blog-card" data-category="farm-stories" data-aos="fade-up" data-aos-delay="100">
+            <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500&q=80" alt="Sustainable farming" loading="lazy" /></div>
+            <div class="blog-card-body">
+              <div class="blog-meta"><span class="blog-category" style="background:rgba(212,160,23,0.1);color:var(--accent);">Farm Story</span><span class="blog-date"><i class="fas fa-calendar"></i> Sep 1, 2026</span></div>
+              <h3><a href="blog-details.html">How Regenerative Ranching Helps Fight Climate Change</a></h3>
+              <p>Our partner farms don't just avoid harm — they actively restore ecosystems. Here's how rotational grazing sequesters carbon.</p>
+              <div class="blog-footer"><div class="blog-author-mini"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" alt="Priya" /><span>Priya Sharma</span></div><a href="blog-details.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="blog-sidebar">
+        <!-- Search -->
+        <div class="sd-widget" data-aos="fade-left">
+          <h4><i class="fas fa-search" style="color:var(--primary);margin-right:6px;"></i> Search</h4>
+          <div style="display:flex;gap:8px;">
+            <input type="text" placeholder="Search articles..." class="form-control" style="border-radius:50px;font-size:0.9rem;" />
+            <button class="btn btn-primary btn-sm" style="border-radius:50px;padding:10px 16px;"><i class="fas fa-search"></i></button>
+          </div>
+        </div>
+        <!-- Categories -->
+        <div class="sd-widget" data-aos="fade-left" data-aos-delay="100">
+          <h4><i class="fas fa-folder" style="color:var(--primary);margin-right:6px;"></i> Categories</h4>
+          <div class="category-list">
+            <a href="#"><i class="fas fa-drumstick-bite" style="margin-right:8px;"></i>Recipes <span>24</span></a>
+            <a href="#"><i class="fas fa-wheat-awn" style="margin-right:8px;"></i>Farm Stories <span>18</span></a>
+            <a href="#"><i class="fas fa-book-open" style="margin-right:8px;"></i>Meat Guides <span>15</span></a>
+            <a href="#"><i class="fas fa-carrot" style="margin-right:8px;"></i>Nutrition <span>12</span></a>
+            <a href="#"><i class="fas fa-truck" style="margin-right:8px;"></i>Delivery Tips <span>8</span></a>
+            <a href="#"><i class="fas fa-newspaper" style="margin-right:8px;"></i>Events &amp; News <span>7</span></a>
+          </div>
+        </div>
+        <!-- Recent Posts -->
+        <div class="sd-widget" data-aos="fade-left" data-aos-delay="200">
+          <h4><i class="fas fa-clock" style="color:var(--primary);margin-right:6px;"></i> Recent Posts</h4>
+          <div class="recent-post"><img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=80&q=80" alt="Dry aging" loading="lazy" /><div class="recent-post-info"><h5><a href="blog-details.html">Ultimate Guide to Dry-Aging Beef at Home</a></h5><span>Sep 28, 2026</span></div></div>
+          <div class="recent-post"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=80&q=80" alt="Perfect Ribeye" loading="lazy" /><div class="recent-post-info"><h5><a href="blog-details.html">How to Cook the Perfect Ribeye</a></h5><span>Sep 25, 2026</span></div></div>
+          <div class="recent-post"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=80&q=80" alt="Farm story" loading="lazy" /><div class="recent-post-info"><h5><a href="blog-details.html">Meet the Hansen Family Farm</a></h5><span>Sep 20, 2026</span></div></div>
+          <div class="recent-post"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=80&q=80" alt="Nutrition" loading="lazy" /><div class="recent-post-info"><h5><a href="blog-details.html">Grass-Fed vs. Grain-Fed Science</a></h5><span>Sep 15, 2026</span></div></div>
+        </div>
+        <!-- Tag Cloud -->
+        <div class="sd-widget" data-aos="fade-left" data-aos-delay="300">
+          <h4><i class="fas fa-tags" style="color:var(--primary);margin-right:6px;"></i> Tags</h4>
+          <div class="tag-cloud">
+            <a href="#">#Grass-Fed</a><a href="#">#Ribeye</a><a href="#">#BBQ</a><a href="#">#FarmFresh</a><a href="#">#Paleo</a><a href="#">#MealPrep</a><a href="#">#Protein</a><a href="#">#OrganicMeat</a><a href="#">#Butchery</a><a href="#">#Keto</a><a href="#">#LocalFarms</a><a href="#">#Heritage</a>
+          </div>
+        </div>
+        <!-- CTA Widget -->
+        <div class="sd-widget" style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;border:none;" data-aos="fade-left" data-aos-delay="400">
+          <h4 style="color:#fff;border-bottom-color:rgba(255,255,255,0.2);"><i class="fas fa-leaf" style="margin-right:8px;"></i>Get Fresh Meat Weekly</h4>
+          <p style="font-size:0.88rem;color:rgba(255,255,255,0.85);margin-bottom:16px;">Join 12,000+ subscribers. First box 25% off.</p>
+          <a href="login.html#register" class="btn btn-white btn-sm" style="width:100%;justify-content:center;">Start Subscription</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: NEWSLETTER -->
+<section class="section section-alt">
+  <div class="container">
+    <div style="max-width:680px;margin:0 auto;text-align:center;" data-aos="fade-up">
+      <span class="section-tag">Stay in the Loop</span>
+      <h2 class="section-title">Get Weekly Recipes &amp; Farm Stories</h2>
+      <p class="section-desc" style="margin-bottom:32px;">Join 8,500+ food-lovers getting our weekly newsletter. No spam — just great content about real food from real farms.</p>
+      <form style="display:flex;gap:12px;max-width:500px;margin:0 auto;" class="newsletter-form">
+        <input type="email" placeholder="Enter your email address" required style="flex:1;padding:14px 20px;background:var(--surface);border:2px solid var(--border);border-radius:50px;font-size:0.95rem;color:var(--text);font-family:var(--font-body);" />
+        <button type="submit" class="btn btn-primary" style="border-radius:50px;white-space:nowrap;">Subscribe Free</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: POPULAR TOPICS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header text-center" data-aos="fade-up" style="margin-bottom:48px;">
+      <span class="section-tag">Explore Topics</span>
+      <h2 class="section-title">Most Popular Reading</h2>
+    </div>
+    <div class="popular-topics" data-aos="fade-up">
+      <div style="background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);transition:all var(--transition);cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='var(--shadow-lg)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=400&q=80" alt="Grilling" loading="lazy" style="width:100%;height:140px;object-fit:cover;" />
+        <div style="padding:20px;"><h4 style="font-size:0.95rem;margin-bottom:6px;">Grilling &amp; BBQ</h4><span style="font-size:0.82rem;color:var(--text-muted);">12 Articles</span></div>
+      </div>
+      <div style="background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);transition:all var(--transition);cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='var(--shadow-lg)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&q=80" alt="Meal Prep" loading="lazy" style="width:100%;height:140px;object-fit:cover;" />
+        <div style="padding:20px;"><h4 style="font-size:0.95rem;margin-bottom:6px;">Meal Prep Tips</h4><span style="font-size:0.82rem;color:var(--text-muted);">9 Articles</span></div>
+      </div>
+      <div style="background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);transition:all var(--transition);cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='var(--shadow-lg)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <img src="https://images.unsplash.com/photo-1500076656116-558758c991c1?w=400&q=80" alt="Farm Visits" loading="lazy" style="width:100%;height:140px;object-fit:cover;" />
+        <div style="padding:20px;"><h4 style="font-size:0.95rem;margin-bottom:6px;">Farm Visits</h4><span style="font-size:0.82rem;color:var(--text-muted);">7 Articles</span></div>
+      </div>
+      <div style="background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);transition:all var(--transition);cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='var(--shadow-lg)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=400&q=80" alt="Nutrition" loading="lazy" style="width:100%;height:140px;object-fit:cover;" />
+        <div style="padding:20px;"><h4 style="font-size:0.95rem;margin-bottom:6px;">Nutrition Science</h4><span style="font-size:0.82rem;color:var(--text-muted);">11 Articles</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: CTA -->
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-inner" data-aos="fade-up">
+      <div class="cta-content">
+        <span class="section-tag light">Fresh Every Week</span>
+        <h2 class="cta-title">Ready to Eat Better?</h2>
+        <p class="cta-desc">The best meat guides mean nothing without the best meat. Start your subscription and taste the FarmFresh difference.</p>
+        <div class="cta-features"><span><i class="fas fa-check"></i> 25% off first box</span><span><i class="fas fa-check"></i> Free delivery</span><span><i class="fas fa-check"></i> Cancel anytime</span></div>
+        <div class="cta-actions"><a href="login.html#register" class="btn btn-white btn-lg">Get Your First Box</a><a href="services.html" class="btn btn-outline-white btn-lg">Browse Plans</a></div>
+      </div>
+      <div class="cta-image"><img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=600&q=80" alt="FarmFresh meat box" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span>
+        <span class="logo-text">Farm<strong>Fresh</strong> Meats</span>
+      </a>
+      <p>Premium farm-to-door meat delivery. Local. Fresh. Sustainable.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="home2.html">Home 2</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="services.html">Meat Box Subscription</a></li>
+        <li><a href="services.html">Custom Boxes</a></li>
+        <li><a href="services.html">Bulk Orders</a></li>
+        <li><a href="services.html">Doorstep Delivery</a></li>
+        <li><a href="services.html">Corporate Orders</a></li>
+      </ul>
+    </div>
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Get weekly recipes, farm updates and exclusive subscriber deals.</p>
+      <form class="newsletter-form" id="footerNewsletter">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+      <div class="footer-contact-info">
+        <p><i class="fas fa-phone"></i> +1 (800) 555-FARM</p>
+        <p><i class="fas fa-envelope"></i> hello@farmfreshmeats.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Portland, Oregon 97201</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; 2026 FarmFresh Meats. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+<script src="js/main.js"></script>
+<script>
+  // Each blog card opens its own image/content on the details page
+  (function () {
+    var gridIds = ['ribeye', 'hansen', 'grassfed', 'pork', 'lamb', 'regenerative'];
+    document.querySelectorAll('.blog-featured a[href="blog-details.html"]').forEach(function (a) {
+      a.setAttribute('href', 'blog-details.html?post=dry-aging');
+    });
+    document.querySelectorAll('#blogGrid .blog-card').forEach(function (card, i) {
+      var id = gridIds[i] || 'dry-aging';
+      card.querySelectorAll('a[href="blog-details.html"]').forEach(function (a) {
+        a.setAttribute('href', 'blog-details.html?post=' + id);
+      });
+    });
+  })();
+</script>
+</body>
+</html>

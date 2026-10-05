@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FarmFresh Meats – Solutions for Families, Fitness & Bulk Buyers</title>
+  <meta name="description" content="Niche-specific meat subscription plans for families, fitness enthusiasts, meal preppers, event catering and bulk buyers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Home 2 specific */
+    .niche-hero {
+      background: linear-gradient(135deg, #0d2b1e 0%, #1b4332 40%, #2d6a4f 80%, #1e5c40 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: var(--navbar-h);
+      position: relative;
+      overflow: hidden;
+    }
+    .niche-hero::before {
+      content: '';
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(212,160,23,0.08) 0%, transparent 70%);
+      top: -200px;
+      right: -200px;
+      border-radius: 50%;
+    }
+    .niche-hero-content { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 100%; }
+    .niche-hero-content > * { max-width: 100%; }
+    .niche-hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); color: #fff; margin-bottom: 20px; }
+    .niche-hero p { font-size: 1.15rem; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto 40px; }
+    .niche-tabs-hero {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+    .niche-tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 50px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: var(--font-body);
+    }
+    .niche-tab-btn:hover, .niche-tab-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .niche-hero-img {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      height: 500px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    }
+    .niche-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .niche-segment {
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .niche-segment.alt { background: var(--bg-alt); }
+    .niche-segment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .niche-segment.reverse .niche-segment-grid { direction: rtl; }
+    .niche-segment.reverse .niche-segment-content { direction: ltr; }
+    .niche-img-wrap {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      height: 480px;
+      box-shadow: var(--shadow-lg);
+    }
+    .niche-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .niche-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, rgba(45,106,79,0.12), rgba(82,183,136,0.08));
+      color: var(--primary);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid rgba(45,106,79,0.2);
+      margin-bottom: 20px;
+    }
+    .niche-label i { font-size: 1rem; }
+    .niche-bullets { margin: 24px 0; display: flex; flex-direction: column; gap: 14px; }
+    .niche-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .niche-bullet i { color: var(--primary); margin-top: 3px; font-size: 0.9rem; flex-shrink: 0; }
+    .niche-price-tag {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+    .niche-price-tag .price { font-size: 2.5rem; font-weight: 800; font-family: var(--font-head); color: var(--primary); }
+    .niche-price-tag .period { color: var(--text-muted); font-size: 0.9rem; }
+    .comparison-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+    .comparison-table th {
+      padding: 16px 20px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    .comparison-table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+    .comparison-table th:last-child { border-radius: 0 var(--radius-sm) 0 0; }
+    .comparison-table td { padding: 14px 20px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table tr:hover td { background: rgba(45,106,79,0.03); }
+    .comparison-table .check { color: var(--primary); font-size: 1rem; }
+    .comparison-table .cross { color: var(--text-light); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+    .niche-cta {
+      background: linear-gradient(135deg, var(--accent) 0%, #c8910a 100%);
+      border-radius: var(--radius-xl);
+      padding: 60px;
+      text-align: center;
+      color: #fff;
+    }
+    .niche-cta h2 { color: #fff; font-size: 2rem; margin-bottom: 16px; }
+    .niche-cta p { color: rgba(255,255,255,0.9); margin-bottom: 32px; }
+    .niche-cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    @media (max-width: 1024px) {
+      .niche-hero-grid, .niche-segment-grid { grid-template-columns: 1fr; gap: 48px; }
+      .niche-segment.reverse .niche-segment-grid { direction: ltr; }
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .niche-segment { padding: 70px 0; }
+      .niche-cta { padding: 40px 24px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .niche-hero { min-height: auto; padding-top: calc(var(--navbar-h) + 40px); padding-bottom: 60px; }
+      .comparison-table th, .comparison-table td { padding: 12px 14px; font-size: 0.82rem; }
+    }
+    @media (max-width: 360px) {
+      .niche-hero h1 { font-size: 2rem; }
+      .niche-cta { padding: 32px 20px; }
+      .niche-cta h2 { font-size: 1.4rem; }
+      .niche-cta-btns .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR (same) -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span>
+      <span class="logo-text">Farm<strong>Fresh</strong> Meats</span>
+    </a>
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="home2.html" class="nav-link active">Home 2</a></li>
+      <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+      <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+      <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <div class="profile-menu">
+        <button class="profile-toggle" id="profileToggle" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"><i class="fas fa-circle-user"></i></button>
+        <ul class="profile-dropdown">
+          <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+          <li><a href="dashboard.html"><i class="fas fa-user"></i> User Dashboard</a></li>
+          <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Dashboard</a></li>
+        </ul>
+      </div>
+      <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to right-to-left layout" aria-pressed="false" title="RTL">RTL</button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== SECTION 1: NICHE HERO ===== -->
+<section class="niche-hero">
+  <div class="container">
+    <div class="niche-hero-grid">
+      <div class="niche-hero-content">
+        <span class="section-tag light">Tailored for Every Lifestyle</span>
+        <h1>Premium Meat,<br><span class="text-accent">Your Way</span></h1>
+        <p>Whether you're feeding a family, fueling your fitness, prepping weekly meals, hosting events, or buying in bulk — we have the perfect plan for you.</p>
+        <div class="niche-tabs-hero">
+          <button class="niche-tab-btn active"><i class="fas fa-home"></i> Families</button>
+          <button class="niche-tab-btn"><i class="fas fa-dumbbell"></i> Fitness</button>
+          <button class="niche-tab-btn"><i class="fas fa-utensils"></i> Meal Prep</button>
+          <button class="niche-tab-btn"><i class="fas fa-glass-cheers"></i> Events</button>
+          <button class="niche-tab-btn"><i class="fas fa-boxes"></i> Bulk</button>
+        </div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+          <a href="login.html#register" class="btn btn-white btn-lg">Find My Plan</a>
+          <a href="services.html" class="btn btn-ghost btn-lg">Compare Plans</a>
+        </div>
+      </div>
+      <div class="niche-hero-img">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Premium meal presentation" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: FAMILIES ===== -->
+<section class="niche-segment" id="families">
+  <div class="container">
+    <div class="niche-segment-grid">
+      <div class="niche-img-wrap">
+        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=700&q=80" alt="Family dinner with fresh meat" loading="lazy" />
+      </div>
+      <div class="niche-segment-content">
+        <div class="niche-label"><i class="fas fa-home"></i> For Families</div>
+        <h2 class="section-title">Feed Your Family<br>Better Every Week</h2>
+        <p class="section-desc">The Family Box is designed to make weeknight dinners easy, affordable and healthy. Enough for 4–6 people, delivered fresh every week.</p>
+        <div class="niche-bullets">
+          <div class="niche-bullet"><i class="fas fa-check-circle"></i><span>4–6 servings of chef-curated cuts per week</span></div>
+          <div class="niche-bullet"><i class="fas fa-check-circle"></i><span>Kid-friendly options: chicken tenders, mild sausages, burgers</span></div>
+          <div class="niche-bullet"><i class="fas fa-check-circle"></i><span>Included recipe cards for each cut</span></div>
+          <div class="niche-bullet"><i class="fas fa-check-circle"></i><span>Flexible delivery — weekly, bi-weekly or monthly</span></div>
+          <div class="niche-bullet"><i class="fas fa-check-circle"></i><span>Save 18% vs. supermarket prices</span></div>
+        </div>
+        <div class="niche-price-tag">
+          <span class="price">$89</span>
+          <span class="period">/ week · cancel anytime</span>
+        </div>
+        <div style="display:flex;gap:12px;">
+          <a href="login.html#register" class="btn btn-primary">Start Family Plan</a>
+          <a href="service-details.html" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3: FITNESS ===== -->
+<section class="niche-segment alt reverse" id="fitness">
+  <div class="container">
+    <div class="niche-segment-grid">
+      <div class="niche-segment-content" style="direction:ltr;">
+        <div class="niche-label"><i class="fas fa-dumbbell"></i> For Fitness</div>
+        <h2 class="section-title">Fuel Your Performance<br>with Clean Protein</h2>
+        <p class="section-desc">The Athlete Box is high-protein, low-fat and macro-balanced. Perfect for gym-goers, CrossFit athletes and bodybuilders.</p>
+        <div class="niche-bullets">
+          <div class="niche-bullet"><i class="fas fa-check-circle"></i><span>Lean cuts: chicken breast, turkey, sirloin, bison</span></div>
+          <div class="niche-bullet"><i class="fas fa-check-circle"></i><span>Macro nutrition breakdown on each package</span></div>
+          <div class="niche-bullet"><i class="fas fa-check-circle"></i><span>Pre-portioned for meal prep (6 oz & 8 oz cuts)</span></div>
+          <div class="niche-bullet"><i class="fas fa-check-circle"></i><span>Grass-fed protein — no hidden fat or fillers</span></div>
+          <div class="niche-bullet"><i class="fas fa-check-circle"></i><span>High-protein recipe guide included</span></div>
+        </div>
+        <div class="niche-price-tag">
+          <span class="price">$99</span>
+          <span class="period">/ week · skip or pause anytime</span>
+        </div>
+        <div style="display:flex;gap:12px;">
+          <a href="login.html#register" class="btn btn-primary">Start Athlete Plan</a>
+          <a href="service-details.html" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+      <div class="niche-img-wrap">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=80" alt="Fitness nutrition lean meat" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 4: MEAL PREP + EVENTS (GRID) ===== -->
+<section class="niche-segment" id="meal-prep">
+  <div class="container">
+    <div class="section-header text-center" data-aos="fade-up" style="margin-bottom:60px;">
+      <span class="section-tag">More Solutions</span>
+      <h2 class="section-title">Meal Prep, Events &amp; Bulk</h2>
+      <p class="section-desc">Solutions for every lifestyle — from Sunday meal preppers to corporate event caterers to restaurant-level bulk buyers.</p>
+    </div>
+    <div class="stack-768" style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;" data-aos="fade-up">
+      <!-- Meal Prep -->
+      <div class="card" style="padding:0;overflow:hidden;">
+        <div style="height:200px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=500&q=80" alt="Weekly meal prep containers" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div style="padding:28px;">
+          <div class="niche-label" style="margin-bottom:12px;"><i class="fas fa-utensils"></i> Weekly Meal Prep</div>
+          <h3 style="font-size:1.2rem;margin-bottom:12px;">Sunday Prep Box</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:20px;line-height:1.6;">Pre-portioned cuts sized for meal containers. Consistent weight per piece. Includes 5-day cook plan.</p>
+          <ul style="list-style:none;margin-bottom:20px;">
+            <li style="font-size:0.85rem;color:var(--text-muted);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;"><i class="fas fa-check" style="color:var(--primary);"></i> 10 pre-portioned cuts/week</li>
+            <li style="font-size:0.85rem;color:var(--text-muted);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;"><i class="fas fa-check" style="color:var(--primary);"></i> Macro breakdown included</li>
+            <li style="font-size:0.85rem;color:var(--text-muted);padding:5px 0;display:flex;gap:8px;align-items:center;"><i class="fas fa-check" style="color:var(--primary);"></i> From $79/week</li>
+          </ul>
+          <a href="login.html#register" class="btn btn-primary" style="width:100%;justify-content:center;">Get Meal Prep Box</a>
+        </div>
+      </div>
+      <!-- Events -->
+      <div class="card" style="padding:0;overflow:hidden;">
+        <div style="height:200px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=500&q=80" alt="Event catering barbecue" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div style="padding:28px;">
+          <div class="niche-label" style="margin-bottom:12px;"><i class="fas fa-glass-cheers"></i> Events &amp; Catering</div>
+          <h3 style="font-size:1.2rem;margin-bottom:12px;">Event Catering Box</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:20px;line-height:1.6;">Wedding receptions, corporate BBQs, birthday parties. Custom quantities, mix-and-match cuts, bulk pricing.</p>
+          <ul style="list-style:none;margin-bottom:20px;">
+            <li style="font-size:0.85rem;color:var(--text-muted);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;"><i class="fas fa-check" style="color:var(--primary);"></i> Minimum 20 lbs order</li>
+            <li style="font-size:0.85rem;color:var(--text-muted);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;"><i class="fas fa-check" style="color:var(--primary);"></i> Dedicated event coordinator</li>
+            <li style="font-size:0.85rem;color:var(--text-muted);padding:5px 0;display:flex;gap:8px;align-items:center;"><i class="fas fa-check" style="color:var(--primary);"></i> Custom pricing available</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Get Event Quote</a>
+        </div>
+      </div>
+      <!-- Bulk -->
+      <div class="card" style="padding:0;overflow:hidden;">
+        <div style="height:200px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=500&q=80" alt="Bulk wholesale meat" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div style="padding:28px;">
+          <div class="niche-label" style="margin-bottom:12px;"><i class="fas fa-boxes"></i> Bulk Buyers</div>
+          <h3 style="font-size:1.2rem;margin-bottom:12px;">Wholesale / Bulk Box</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:20px;line-height:1.6;">Restaurants, meal kit companies, gyms and NutriCenters. Wholesale pricing with priority processing.</p>
+          <ul style="list-style:none;margin-bottom:20px;">
+            <li style="font-size:0.85rem;color:var(--text-muted);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;"><i class="fas fa-check" style="color:var(--primary);"></i> 50+ lbs minimum, up to 500 lbs</li>
+            <li style="font-size:0.85rem;color:var(--text-muted);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;"><i class="fas fa-check" style="color:var(--primary);"></i> Up to 35% wholesale discount</li>
+            <li style="font-size:0.85rem;color:var(--text-muted);padding:5px 0;display:flex;gap:8px;align-items:center;"><i class="fas fa-check" style="color:var(--primary);"></i> NET30 billing available</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Apply for Wholesale</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 5: COMPARISON TABLE ===== -->
+<section class="niche-segment alt" id="compare">
+  <div class="container">
+    <div class="section-header text-center" data-aos="fade-up" style="margin-bottom:48px;">
+      <span class="section-tag">Plan Comparison</span>
+      <h2 class="section-title">Which Plan Is Right for You?</h2>
+    </div>
+    <div style="background:var(--surface);border-radius:var(--radius-lg);overflow-x:auto;box-shadow:var(--shadow-md);border:1px solid var(--border);-webkit-overflow-scrolling:touch;" data-aos="fade-up">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Family Box</th>
+            <th>Athlete Box</th>
+            <th>Meal Prep</th>
+            <th>Bulk / Event</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Starting Price</td><td>$89/wk</td><td>$99/wk</td><td>$79/wk</td><td>Custom</td></tr>
+          <tr><td>Servings / Week</td><td>4–6 ppl</td><td>1–2 ppl</td><td>5 days</td><td>20–500 lbs</td></tr>
+          <tr><td>Recipe Cards</td><td><i class="fas fa-check check"></i></td><td><i class="fas fa-check check"></i></td><td><i class="fas fa-check check"></i></td><td><i class="fas fa-times cross"></i></td></tr>
+          <tr><td>Macro Breakdown</td><td><i class="fas fa-times cross"></i></td><td><i class="fas fa-check check"></i></td><td><i class="fas fa-check check"></i></td><td><i class="fas fa-times cross"></i></td></tr>
+          <tr><td>Custom Cuts</td><td>Limited</td><td><i class="fas fa-check check"></i></td><td><i class="fas fa-check check"></i></td><td><i class="fas fa-check check"></i></td></tr>
+          <tr><td>Skip / Pause</td><td><i class="fas fa-check check"></i></td><td><i class="fas fa-check check"></i></td><td><i class="fas fa-check check"></i></td><td>By arrangement</td></tr>
+          <tr><td>Free Delivery</td><td><i class="fas fa-check check"></i></td><td><i class="fas fa-check check"></i></td><td><i class="fas fa-check check"></i></td><td>Orders 50+ lbs</td></tr>
+          <tr><td>Dedicated Account Manager</td><td><i class="fas fa-times cross"></i></td><td><i class="fas fa-times cross"></i></td><td><i class="fas fa-times cross"></i></td><td><i class="fas fa-check check"></i></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 6: TESTIMONIALS + CTA ===== -->
+<section class="niche-segment" id="testimonials">
+  <div class="container">
+    <div class="section-header text-center" data-aos="fade-up" style="margin-bottom:48px;">
+      <span class="section-tag">Success Stories</span>
+      <h2 class="section-title">Real People, Real Results</h2>
+    </div>
+    <div class="testimonials-grid" style="margin-bottom:80px;">
+      <div class="testimonial-card" data-aos="fade-up">
+        <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testimonial-text">"The Family Box has changed how we eat. We stopped buying bland supermarket chicken and now our kids actually look forward to dinner. The recipe cards are genius."</p>
+        <div class="testimonial-author">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=faces&q=80" alt="Sarah M." class="author-avatar" loading="lazy" />
+          <div><div class="author-name">Sarah M.</div><div class="author-role">Family Plan Subscriber · Portland, OR</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testimonial-text">"As a personal trainer, I recommend the Athlete Box to all my clients. Clean protein, perfect portions, and the macros on the packaging make tracking effortless."</p>
+        <div class="testimonial-author">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=faces&q=80" alt="Jake R." class="author-avatar" loading="lazy" />
+          <div><div class="author-name">Jake R.</div><div class="author-role">Certified Trainer · Athlete Plan</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testimonial-text">"We used FarmFresh for our company BBQ — 200 guests, impeccable quality. The dedicated coordinator made everything seamless. Will absolutely use again."</p>
+        <div class="testimonial-author">
+          <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=200&h=200&fit=crop&crop=faces&q=80" alt="Amanda K." class="author-avatar" loading="lazy" />
+          <div><div class="author-name">Amanda K.</div><div class="author-role">Events Manager · Bulk Buyer</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="niche-cta" data-aos="fade-up">
+      <h2>Ready to Find Your Perfect Plan?</h2>
+      <p>Take our 60-second quiz and we'll recommend the ideal meat subscription for your lifestyle.</p>
+      <div class="niche-cta-btns">
+        <a href="login.html#register" class="btn btn-white btn-lg">Take the Quiz</a>
+        <a href="contact.html" class="btn btn-outline-white btn-lg">Talk to an Expert</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span>
+        <span class="logo-text">Farm<strong>Fresh</strong> Meats</span>
+      </a>
+      <p>Premium farm-to-door meat delivery. Local. Fresh. Sustainable.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="home2.html">Home 2</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="services.html">Meat Box Subscription</a></li>
+        <li><a href="services.html">Custom Boxes</a></li>
+        <li><a href="services.html">Bulk Orders</a></li>
+        <li><a href="services.html">Doorstep Delivery</a></li>
+        <li><a href="services.html">Corporate Orders</a></li>
+      </ul>
+    </div>
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Get weekly recipes, farm updates and exclusive subscriber deals.</p>
+      <form class="newsletter-form" id="footerNewsletter">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+      <div class="footer-contact-info">
+        <p><i class="fas fa-phone"></i> +1 (800) 555-FARM</p>
+        <p><i class="fas fa-envelope"></i> hello@farmfreshmeats.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Portland, Oregon 97201</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; 2026 FarmFresh Meats. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+<script src="js/main.js"></script>
+<script>
+  // Niche tabs hero
+  document.querySelectorAll('.niche-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.niche-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

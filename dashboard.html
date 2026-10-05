@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard – FarmFresh Meats Subscriber Portal</title>
+  <meta name="description" content="Manage your FarmFresh meat subscription — customize your box, manage deliveries, track orders, and handle billing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body { background:var(--bg); }
+    .dash-section { animation:fadeUp 0.4s ease; }
+    .dash-logout { font-size:0.85rem; }
+    /* Product builder */
+    .product-builder { display:grid; grid-template-columns:1fr 340px; gap:24px; }
+    .product-list { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .sched-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+    .track-grid { display:grid; grid-template-columns:1.2fr 1fr; gap:28px; }
+    .grid-2col { display:grid; grid-template-columns:1fr 1fr; }
+    .grid-3col { display:grid; grid-template-columns:1fr 1fr 1fr; }
+    @media(max-width:1024px){ .product-builder{grid-template-columns:1fr;} .box-summary{position:static;} }
+    @media(max-width:768px){ .sched-grid{grid-template-columns:1fr;} .track-grid{grid-template-columns:1fr;} .grid-2col{grid-template-columns:1fr;} }
+    @media(max-width:640px){ .dash-user-name{display:none;} .dash-logo-text{display:none;} .dash-logout{font-size:0;padding:8px;} .dash-logout i{font-size:0.9rem;} .product-list{grid-template-columns:1fr;} .product-item{flex-wrap:wrap;} }
+    @media(max-width:480px){ .dash-top-actions{gap:8px !important;} .grid-3col{grid-template-columns:1fr;} .invoice-row{flex-wrap:wrap;gap:10px;} .invoice-row > div:first-child{flex:1 1 100%;} .dash-main div[style*="padding:32px"]{padding:20px !important;} .dash-main div[style*="padding:24px"]{padding:16px !important;} .dash-main div[style*="padding:20px"]{padding:16px !important;} }
+    @media(max-width:360px){ .dash-logo-text{display:none;} .dash-top-actions{gap:6px;} .dash-user-pill{padding:6px 8px;} }
+    .product-info { flex:1; min-width:0; }
+    .btn-row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .sidebar-backdrop { display:none; }
+    @media(max-width:768px){ .sidebar-backdrop.show{display:block;position:fixed;left:0;right:0;top:var(--navbar-h);bottom:0;background:rgba(10,14,12,.5);z-index:997;} }
+    .product-item { background:var(--surface); border-radius:var(--radius-md); padding:16px; border:2px solid var(--border); display:flex; gap:12px; align-items:center; transition:all var(--transition); }
+    .product-item:hover { border-color:var(--primary); }
+    .product-item.selected { border-color:var(--primary); background:rgba(45,106,79,0.04); }
+    .product-img { width:64px; height:64px; border-radius:var(--radius-sm); object-fit:cover; flex-shrink:0; }
+    .product-info h4 { font-size:0.88rem; margin-bottom:2px; overflow-wrap:break-word; }
+    .product-info span { font-size:0.78rem; color:var(--text-muted); }
+    .product-price { font-size:0.88rem; font-weight:700; color:var(--primary); margin-top:4px; display:block; }
+    .box-summary { background:var(--surface); border-radius:var(--radius-lg); padding:24px; border:1px solid var(--border); position:sticky; top:100px; }
+    .box-summary h4 { font-size:1rem; margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid var(--border); }
+    .summary-item { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border); font-size:0.88rem; }
+    .summary-item:last-of-type { border:none; font-weight:700; }
+    /* Delivery scheduler */
+    .delivery-calendar { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin-top:16px; }
+    .cal-day { padding:10px 6px; text-align:center; border-radius:var(--radius-sm); font-size:0.82rem; cursor:pointer; transition:all var(--transition); border:2px solid var(--border); background:var(--surface); }
+    .cal-day:hover { border-color:var(--primary); color:var(--primary); }
+    .cal-day.selected { background:var(--primary); color:#fff; border-color:var(--primary); }
+    .cal-day.disabled { opacity:0.4; cursor:not-allowed; pointer-events:none; }
+    .cal-day.delivery { border-color:var(--accent); background:rgba(212,160,23,0.1); }
+    .cal-header { font-size:0.75rem; font-weight:700; text-align:center; color:var(--text-muted); text-transform:uppercase; }
+    .btn-skip { border:1px solid var(--border); border-radius:6px; padding:4px 10px; font-size:0.78rem; cursor:pointer; font-family:var(--font-body); color:var(--text); background:transparent; transition:all var(--transition); }
+    .btn-skip:hover { border-color:var(--accent); color:var(--accent); }
+    /* Order tracking */
+    .tracking-timeline { display:flex; flex-direction:column; gap:0; }
+    .tracking-step { display:flex; gap:20px; align-items:flex-start; position:relative; padding-bottom:28px; }
+    .tracking-step:last-child { padding-bottom:0; }
+    .tracking-step::before { content:''; position:absolute; left:19px; top:40px; bottom:0; width:2px; background:var(--border); }
+    .tracking-step.done::before { background:var(--primary); }
+    .tracking-step:last-child::before { display:none; }
+    .ts-dot { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; border:2px solid var(--border); background:var(--surface); color:var(--text-muted); }
+    .tracking-step.done .ts-dot { background:var(--primary); color:#fff; border-color:var(--primary); }
+    .tracking-step.current .ts-dot { background:var(--accent); color:#221a00; border-color:var(--accent); animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(212,160,23,0.4)} 50%{box-shadow:0 0 0 10px rgba(212,160,23,0)} }
+    .ts-info strong { display:block; font-size:0.92rem; margin-bottom:3px; }
+    .ts-info span { font-size:0.82rem; color:var(--text-muted); }
+    /* Billing */
+    .billing-card { background:linear-gradient(135deg,var(--primary-dark),var(--primary)); border-radius:var(--radius-lg); padding:28px; color:#fff; }
+    .billing-card h4 { color:var(--accent-light); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px; }
+    .billing-card .amount { font-size:2.5rem; font-weight:800; font-family:var(--font-head); display:block; }
+    .billing-card p { color:rgba(255,255,255,0.7); font-size:0.85rem; margin-top:4px; }
+    .invoice-row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; border-bottom:1px solid var(--border); font-size:0.88rem; }
+    .invoice-row:last-child { border-bottom:none; }
+    .invoice-status { padding:4px 10px; border-radius:50px; font-size:0.75rem; font-weight:700; }
+    .status-paid { background:rgba(45,106,79,0.1); color:var(--primary); }
+    .status-pending { background:rgba(212,160,23,0.1); color:var(--accent); }
+  </style>
+</head>
+<body>
+
+<!-- TOP NAVBAR for dashboard -->
+<nav class="navbar scrolled" id="navbar" style="background:var(--surface);box-shadow:var(--shadow-sm);">
+  <div class="container nav-container">
+    <a href="index.html" class="nav-logo" style="color:var(--text);"><span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span><span class="logo-text dash-logo-text">Farm<strong>Fresh</strong> Meats</span></a>
+    <div class="dash-top-actions" style="display:flex;align-items:center;gap:12px;">
+      <button class="theme-toggle" id="themeToggle" style="background:var(--bg-alt);color:var(--text);"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to right-to-left layout" aria-pressed="false" title="RTL" style="background:var(--bg-alt);color:var(--text);border:1px solid var(--border);">RTL</button>
+      <button id="sidebarToggle" class="btn btn-outline btn-sm" style="display:none;"><i class="fas fa-bars"></i></button>
+      <div class="dash-user-pill" style="display:flex;align-items:center;gap:10px;padding:8px 16px;background:var(--bg-alt);border-radius:50px;border:1px solid var(--border);">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80" alt="Jennifer" style="width:32px;height:32px;border-radius:50%;object-fit:cover;" />
+        <span class="dash-user-name" style="font-size:0.88rem;font-weight:600;color:var(--text);">Jennifer K.</span>
+        <i class="fas fa-chevron-down" style="font-size:0.7rem;color:var(--text-muted);"></i>
+      </div>
+      <a href="index.html" class="dash-logout" style="color:var(--text-muted);"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="dash-layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="dashSidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-user">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80" alt="Jennifer K." class="sidebar-avatar" />
+        <div>
+          <span class="sidebar-user-name">Jennifer K.</span>
+          <span class="sidebar-user-role">Family Box · Active</span>
+        </div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-title">Main</div>
+      <a href="#" class="sidebar-link active" data-section="overview"><i class="fas fa-th-large"></i> Overview</a>
+      <a href="#" class="sidebar-link" data-section="customize"><i class="fas fa-sliders-h"></i> Customize My Box</a>
+      <a href="#" class="sidebar-link" data-section="schedule"><i class="fas fa-calendar-alt"></i> Delivery Schedule</a>
+      <a href="#" class="sidebar-link" data-section="track"><i class="fas fa-shipping-fast"></i> Track Order<span class="sidebar-badge">1</span></a>
+
+      <div class="sidebar-section-title" style="margin-top:8px;">Account</div>
+      <a href="#" class="sidebar-link" data-section="history"><i class="fas fa-history"></i> Order History</a>
+      <a href="#" class="sidebar-link" data-section="billing"><i class="fas fa-credit-card"></i> Billing &amp; Invoices</a>
+      <a href="#" class="sidebar-link" data-section="profile"><i class="fas fa-user-circle"></i> Profile</a>
+      <a href="#" class="sidebar-link" data-section="settings"><i class="fas fa-cog"></i> Settings</a>
+
+      <div style="margin-top:24px;padding:16px;background:rgba(212,160,23,0.08);border-radius:var(--radius-md);border:1px solid rgba(212,160,23,0.2);">
+        <p style="font-size:0.82rem;color:var(--text-muted);margin:0 0 10px;">Next delivery in <strong style="color:var(--accent);">3 days</strong></p>
+        <a href="#" class="btn btn-sm btn-primary" style="width:100%;justify-content:center;font-size:0.82rem;" onclick="document.querySelector('[data-section=customize]').click()">Customize Box</a>
+      </div>
+    </nav>
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- MAIN CONTENT -->
+  <main class="dash-main">
+    <!-- ===== OVERVIEW SECTION ===== -->
+    <div class="dash-section" id="overview">
+      <div class="dash-header">
+        <div><h1>Welcome back, Jennifer!</h1><p>Your next Family Box ships in <strong>3 days</strong> (Friday, Oct 3). Cutoff for changes: Today at 11:59 PM.</p></div>
+        <div class="btn-row"><a href="#" class="btn btn-outline btn-sm" onclick="document.querySelector('[data-section=customize]').click()"><i class="fas fa-edit"></i> Edit Box</a><a href="#" class="btn btn-primary btn-sm" onclick="document.querySelector('[data-section=track]').click()"><i class="fas fa-shipping-fast"></i> Track Order</a></div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon green"><i class="fas fa-box-open"></i></div>
+          <div><span class="kpi-value">14</span><span class="kpi-label">Total Deliveries</span><div class="kpi-change up"><i class="fas fa-arrow-up"></i> Active 14 months</div></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon gold"><i class="fas fa-dollar-sign"></i></div>
+          <div><span class="kpi-value">$129</span><span class="kpi-label">Next Bill</span><div class="kpi-change up">Due Oct 3</div></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon red"><i class="fas fa-weight"></i></div>
+          <div><span class="kpi-value">168 lbs</span><span class="kpi-label">Total Meat Delivered</span><div class="kpi-change up"><i class="fas fa-arrow-up"></i> All time</div></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon blue"><i class="fas fa-star"></i></div>
+          <div><span class="kpi-value">4.9<i class="fas fa-star" style="font-size:1rem;margin-left:4px;"></i></span><span class="kpi-label">Your Rating Given</span><div class="kpi-change up">Avg across orders</div></div>
+        </div>
+      </div>
+
+      <!-- Subscription Status -->
+      <div class="stack-768" style="display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:28px;max-width:100%;">
+        <div class="table-wrap">
+          <div class="table-header"><span class="table-title">Current Subscription</span><div class="table-actions-bar"><a href="#" class="btn btn-sm btn-outline" onclick="document.querySelector('[data-section=customize]').click()">Edit</a></div></div>
+          <div style="padding:24px;">
+            <div class="grid-3col" style="gap:16px;">
+              <div><span style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);font-weight:700;">Plan</span><p style="margin:6px 0 0;font-weight:600;">Family Box</p></div>
+              <div><span style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);font-weight:700;">Frequency</span><p style="margin:6px 0 0;font-weight:600;">Weekly</p></div>
+              <div><span style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);font-weight:700;">Status</span><p style="margin:6px 0 0;"><span class="badge badge-success"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Active</span></p></div>
+              <div><span style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);font-weight:700;">Next Delivery</span><p style="margin:6px 0 0;font-weight:600;">Oct 3, 2026</p></div>
+              <div><span style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);font-weight:700;">Box Weight</span><p style="margin:6px 0 0;font-weight:600;">12 lbs</p></div>
+              <div><span style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);font-weight:700;">Member Since</span><p style="margin:6px 0 0;font-weight:600;">Jul 2025</p></div>
+            </div>
+            <div class="btn-row" style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border);">
+              <button class="btn btn-sm btn-outline"><i class="fas fa-pause"></i> Pause Subscription</button>
+              <button class="btn btn-sm btn-outline" style="border-color:var(--accent);color:var(--accent);"><i class="fas fa-calendar-times"></i> Skip Next Delivery</button>
+              <button class="btn btn-sm" style="border:2px solid var(--red-meat);color:var(--red-meat);border-radius:50px;padding:8px 16px;font-size:0.85rem;font-family:var(--font-body);font-weight:600;cursor:pointer;transition:all var(--transition);" onmouseover="this.style.background='var(--red-meat)';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='var(--red-meat)'"><i class="fas fa-times"></i> Cancel</button>
+            </div>
+          </div>
+        </div>
+        <!-- Quick track widget -->
+        <div class="table-wrap">
+          <div class="table-header"><span class="table-title">Order #FF-1024</span><span class="badge badge-info"><i class="fas fa-shipping-fast"></i> In Transit</span></div>
+          <div style="padding:20px;">
+            <div class="tracking-timeline">
+              <div class="tracking-step done"><div class="ts-dot"><i class="fas fa-check"></i></div><div class="ts-info"><strong>Order Confirmed</strong><span>Sep 27, 10:00 AM</span></div></div>
+              <div class="tracking-step done"><div class="ts-dot"><i class="fas fa-check"></i></div><div class="ts-info"><strong>Harvested &amp; Butchered</strong><span>Sep 29, 7:00 AM</span></div></div>
+              <div class="tracking-step done"><div class="ts-dot"><i class="fas fa-check"></i></div><div class="ts-info"><strong>Packed &amp; Shipped</strong><span>Sep 30, 6:00 AM</span></div></div>
+              <div class="tracking-step current"><div class="ts-dot"><i class="fas fa-truck"></i></div><div class="ts-info"><strong>Out for Delivery</strong><span>Oct 3 · Est. 10am–2pm</span></div></div>
+              <div class="tracking-step"><div class="ts-dot"><i class="fas fa-home"></i></div><div class="ts-info"><strong>Delivered</strong><span>Pending</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Orders Table -->
+      <div class="table-wrap">
+        <div class="table-header"><span class="table-title">Recent Orders</span><a href="#" class="btn btn-sm btn-outline" onclick="document.querySelector('[data-section=history]').click()">View All</a></div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead><tr><th>Order #</th><th>Date</th><th>Box</th><th>Weight</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td><strong>#FF-1024</strong></td><td>Sep 30, 2026</td><td>Family Box</td><td>12 lbs</td><td><strong>$129.00</strong></td><td><span class="badge badge-info">In Transit</span></td><td><div class="table-actions"><button class="btn btn-sm btn-outline" style="border-radius:8px;padding:5px 12px;" onclick="document.querySelector('[data-section=track]').click()"><i class="fas fa-search"></i></button></div></td></tr>
+              <tr><td><strong>#FF-1011</strong></td><td>Sep 23, 2026</td><td>Family Box</td><td>12 lbs</td><td><strong>$129.00</strong></td><td><span class="badge badge-success">Delivered</span></td><td><div class="table-actions"><button class="btn btn-sm btn-outline" style="border-radius:8px;padding:5px 12px;"><i class="fas fa-download"></i></button></div></td></tr>
+              <tr><td><strong>#FF-0998</strong></td><td>Sep 16, 2026</td><td>Family Box</td><td>12 lbs</td><td><strong>$129.00</strong></td><td><span class="badge badge-success">Delivered</span></td><td><div class="table-actions"><button class="btn btn-sm btn-outline" style="border-radius:8px;padding:5px 12px;"><i class="fas fa-download"></i></button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CUSTOMIZE BOX SECTION ===== -->
+    <div class="dash-section" id="customize" style="display:none;">
+      <div class="dash-header">
+        <div><h1>Customize My Box</h1><p>Build your perfect box for the Oct 3 delivery. Cutoff: Today 11:59 PM PT.</p></div>
+        <div style="display:flex;align-items:center;gap:10px;background:rgba(212,160,23,0.1);padding:10px 16px;border-radius:50px;border:1px solid rgba(212,160,23,0.2);"><i class="fas fa-clock" style="color:var(--accent);"></i><span style="font-size:0.88rem;font-weight:600;color:var(--accent);">Changes close in 8h 42m</span></div>
+      </div>
+
+      <!-- Protein category filter -->
+      <div class="filter-tabs" style="justify-content:flex-start;margin-bottom:24px;">
+        <button class="filter-btn active" data-filter="all">All Proteins</button>
+        <button class="filter-btn" data-filter="beef">Beef</button>
+        <button class="filter-btn" data-filter="poultry">Poultry</button>
+        <button class="filter-btn" data-filter="pork">Pork</button>
+        <button class="filter-btn" data-filter="lamb">Lamb</button>
+      </div>
+
+      <div class="product-builder">
+        <div>
+          <div class="product-list" id="productList">
+            <div class="product-item selected" data-category="beef"><img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=100&q=80" alt="Ribeye" class="product-img" /><div class="product-info"><h4>Grass-Fed Ribeye</h4><span>10 oz · Dry-aged 21d</span><span class="product-price">$18.99</span></div><div class="qty-selector"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-value" value="2" /><button class="qty-btn qty-plus">+</button></div></div>
+            <div class="product-item selected" data-category="poultry"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=100&q=80" alt="Chicken" class="product-img" /><div class="product-info"><h4>Free-Range Chicken Breast</h4><span>6 oz · Antibiotic-free</span><span class="product-price">$7.99</span></div><div class="qty-selector"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-value" value="4" /><button class="qty-btn qty-plus">+</button></div></div>
+            <div class="product-item" data-category="pork"><img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=100&q=80" alt="Pork" class="product-img" /><div class="product-info"><h4>Heritage Pork Chops</h4><span>8 oz · Berkshire breed</span><span class="product-price">$12.99</span></div><div class="qty-selector"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-value" value="0" /><button class="qty-btn qty-plus">+</button></div></div>
+            <div class="product-item" data-category="beef"><img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=100&q=80" alt="Ground Beef" class="product-img" /><div class="product-info"><h4>Grass-Fed Ground Beef</h4><span>1 lb · 85% lean</span><span class="product-price">$9.99</span></div><div class="qty-selector"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-value" value="2" /><button class="qty-btn qty-plus">+</button></div></div>
+            <div class="product-item" data-category="lamb"><img src="https://images.unsplash.com/photo-1604908177453-7462950a6a3b?w=100&q=80" alt="Lamb" class="product-img" /><div class="product-info"><h4>Lamb Chops (Frenched)</h4><span>4 oz · Pasture-raised</span><span class="product-price">$14.99</span></div><div class="qty-selector"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-value" value="0" /><button class="qty-btn qty-plus">+</button></div></div>
+            <div class="product-item" data-category="beef"><img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=100&q=80" alt="NY Strip" class="product-img" /><div class="product-info"><h4>NY Strip Steak</h4><span>8 oz · USDA Choice</span><span class="product-price">$15.99</span></div><div class="qty-selector"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-value" value="0" /><button class="qty-btn qty-plus">+</button></div></div>
+          </div>
+        </div>
+        <!-- Summary -->
+        <div class="box-summary">
+          <h4><i class="fas fa-box-open" style="color:var(--primary);margin-right:6px;"></i> Your Box Summary</h4>
+          <div class="summary-item"><span>Ribeye Steak ×2</span><span>$37.98</span></div>
+          <div class="summary-item"><span>Chicken Breast ×4</span><span>$31.96</span></div>
+          <div class="summary-item"><span>Ground Beef ×2</span><span>$19.98</span></div>
+          <hr style="margin:12px 0;border-color:var(--border);" />
+          <div class="summary-item"><span>Subtotal</span><span>$89.92</span></div>
+          <div class="summary-item"><span>Plan Credit</span><span style="color:var(--primary);">−$89.92</span></div>
+          <div class="summary-item"><span><strong>Total Due</strong></span><span><strong>$39.08</strong></span></div>
+          <div style="margin-top:16px;"><div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-muted);margin-bottom:6px;"><span>Box Weight</span><span>~9.2 lbs / 12 lbs</span></div><div class="progress-bar"><div class="progress-fill" style="width:77%;"></div></div><p style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">Add 2.8 more lbs to maximize your box value.</p></div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:20px;" onclick="FF.showToast('success','Box Updated!','Your Oct 3 delivery has been customized.')"><i class="fas fa-save"></i> Save Box</button>
+          <button class="btn btn-outline" style="width:100%;justify-content:center;margin-top:8px;"><i class="fas fa-undo"></i> Reset to Default</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== DELIVERY SCHEDULE SECTION ===== -->
+    <div class="dash-section" id="schedule" style="display:none;">
+      <div class="dash-header"><div><h1>Delivery Schedule</h1><p>Choose your preferred delivery days and manage upcoming deliveries.</p></div></div>
+      <div class="sched-grid">
+        <div class="table-wrap">
+          <div class="table-header"><span class="table-title">October 2026</span><div style="display:flex;gap:8px;"><button class="btn btn-sm btn-outline" style="border-radius:8px;padding:6px 10px;"><i class="fas fa-chevron-left"></i></button><button class="btn btn-sm btn-outline" style="border-radius:8px;padding:6px 10px;"><i class="fas fa-chevron-right"></i></button></div></div>
+          <div style="padding:20px;">
+            <div class="delivery-calendar">
+              <div class="cal-header">Sun</div><div class="cal-header">Mon</div><div class="cal-header">Tue</div><div class="cal-header">Wed</div><div class="cal-header">Thu</div><div class="cal-header">Fri</div><div class="cal-header">Sat</div>
+              <div class="cal-day disabled"></div><div class="cal-day disabled"></div><div class="cal-day disabled">1</div><div class="cal-day disabled">2</div><div class="cal-day disabled">3</div><div class="cal-day delivery selected">4</div><div class="cal-day">5</div>
+              <div class="cal-day">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div><div class="cal-day delivery">11</div><div class="cal-day">12</div>
+              <div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day">15</div><div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day delivery">18</div><div class="cal-day">19</div>
+              <div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day">24</div><div class="cal-day delivery">25</div><div class="cal-day">26</div>
+            </div>
+            <div style="display:flex;gap:16px;margin-top:16px;font-size:0.8rem;color:var(--text-muted);">
+              <span style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;background:var(--primary);border-radius:3px;"></span> Selected</span>
+              <span style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border:2px solid var(--accent);border-radius:3px;background:rgba(212,160,23,0.1);"></span> Scheduled</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div class="table-wrap"><div class="table-header"><span class="table-title">Delivery Preferences</span></div>
+            <div style="padding:20px;display:flex;flex-direction:column;gap:16px;">
+              <div class="form-group"><label class="form-label">Preferred Delivery Day</label><select class="form-control"><option>Friday</option><option>Saturday</option><option>Monday</option><option>Tuesday</option></select></div>
+              <div class="form-group"><label class="form-label">Delivery Window</label><select class="form-control"><option>Morning (8am–12pm)</option><option>Afternoon (12pm–4pm)</option><option>Evening (4pm–8pm)</option></select></div>
+              <div class="form-group"><label class="form-label">Delivery Instructions</label><textarea class="form-control" rows="3" placeholder="Leave at door, ring bell, leave with neighbor...">Leave at front door — please ring bell</textarea></div>
+              <button class="btn btn-primary" onclick="FF.showToast('success','Saved!','Delivery preferences updated.')">Save Preferences</button>
+            </div>
+          </div>
+          <div class="table-wrap"><div class="table-header"><span class="table-title">Upcoming Deliveries</span></div>
+            <div style="overflow-x:auto;">
+              <table class="data-table">
+                <thead><tr><th>Date</th><th>Box</th><th>Actions</th></tr></thead>
+                <tbody>
+                  <tr><td>Oct 4</td><td>Family Box</td><td><button class="btn btn-sm btn-skip">Skip</button></td></tr>
+                  <tr><td>Oct 11</td><td>Family Box</td><td><button class="btn btn-sm btn-skip">Skip</button></td></tr>
+                  <tr><td>Oct 18</td><td>Family Box</td><td><button class="btn btn-sm btn-skip">Skip</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TRACK ORDER SECTION ===== -->
+    <div class="dash-section" id="track" style="display:none;">
+      <div class="dash-header"><div><h1>Track My Order</h1><p>Order #FF-1024 · Family Box · Shipped Sep 30</p></div><span class="badge badge-info" style="font-size:0.85rem;padding:8px 16px;"><i class="fas fa-truck"></i> Out for Delivery</span></div>
+      <div class="track-grid">
+        <div class="table-wrap">
+          <div class="table-header"><span class="table-title">Delivery Status</span><span style="font-size:0.85rem;color:var(--text-muted);">Est. arrival: Today, 10am–2pm</span></div>
+          <div style="padding:32px;">
+            <div class="tracking-timeline">
+              <div class="tracking-step done"><div class="ts-dot"><i class="fas fa-check"></i></div><div class="ts-info"><strong>Order Confirmed</strong><span>Sep 27, 10:00 AM · Your subscription order was confirmed and queued.</span></div></div>
+              <div class="tracking-step done"><div class="ts-dot"><i class="fas fa-check"></i></div><div class="ts-info"><strong>Harvested &amp; Processed</strong><span>Sep 29, 7:00 AM · Cuts processed at Willow Creek Farm facility.</span></div></div>
+              <div class="tracking-step done"><div class="ts-dot"><i class="fas fa-check"></i></div><div class="ts-info"><strong>Packed &amp; Quality Checked</strong><span>Sep 29, 3:00 PM · Vacuum-sealed, inspected and packed with dry ice.</span></div></div>
+              <div class="tracking-step done"><div class="ts-dot"><i class="fas fa-check"></i></div><div class="ts-info"><strong>Shipped</strong><span>Sep 30, 6:00 AM · Picked up by FreshRoute logistics partner.</span></div></div>
+              <div class="tracking-step current"><div class="ts-dot"><i class="fas fa-truck"></i></div><div class="ts-info"><strong>Out for Delivery</strong><span>Oct 3, 8:00 AM · On route to 4821 Oak Lane, Portland OR 97201.</span></div></div>
+              <div class="tracking-step"><div class="ts-dot"><i class="fas fa-home"></i></div><div class="ts-info"><strong>Delivered</strong><span>Estimated 10:00 AM – 2:00 PM</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div class="table-wrap">
+            <div class="table-header"><span class="table-title">Order Contents</span></div>
+            <div style="padding:16px;">
+              <div style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);align-items:center;"><img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=60&q=80" alt="" style="width:44px;height:44px;border-radius:var(--radius-sm);object-fit:cover;" /><div><strong style="font-size:0.88rem;">Ribeye Steak ×2</strong><p style="font-size:0.8rem;color:var(--text-muted);margin:0;">10 oz each · Dry-aged</p></div></div>
+              <div style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);align-items:center;"><img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=60&q=80" alt="" style="width:44px;height:44px;border-radius:var(--radius-sm);object-fit:cover;" /><div><strong style="font-size:0.88rem;">Chicken Breast ×4</strong><p style="font-size:0.8rem;color:var(--text-muted);margin:0;">6 oz each · Free-range</p></div></div>
+              <div style="display:flex;gap:10px;padding:10px 0;align-items:center;"><img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=60&q=80" alt="" style="width:44px;height:44px;border-radius:var(--radius-sm);object-fit:cover;" /><div><strong style="font-size:0.88rem;">Ground Beef ×2</strong><p style="font-size:0.8rem;color:var(--text-muted);margin:0;">1 lb each · 85% lean</p></div></div>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <div class="table-header"><span class="table-title">Delivery Address</span></div>
+            <div style="padding:16px;font-size:0.88rem;color:var(--text-muted);">
+              <p><strong style="color:var(--text);">Jennifer K.</strong></p>
+              <p>4821 Oak Lane</p>
+              <p>Portland, OR 97201</p>
+              <p style="margin-top:10px;"><i class="fas fa-phone" style="color:var(--primary);"></i> +1 (503) 555-0192</p>
+              <p><i class="fas fa-sticky-note" style="color:var(--primary);"></i> Leave at front door</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ORDER HISTORY SECTION ===== -->
+    <div class="dash-section" id="history" style="display:none;">
+      <div class="dash-header"><div><h1>Order History</h1><p>All 14 deliveries since July 2025.</p></div><button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Export CSV</button></div>
+      <div class="table-wrap">
+        <div class="table-header"><span class="table-title">All Orders</span><div class="table-actions-bar"><input type="text" placeholder="Search orders..." class="form-control" style="border-radius:50px;padding:8px 16px;font-size:0.85rem;width:200px;" /></div></div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead><tr><th>Order #</th><th>Date</th><th>Contents</th><th>Weight</th><th>Amount</th><th>Status</th><th>Invoice</th></tr></thead>
+            <tbody>
+              <tr><td>#FF-1024</td><td>Sep 30, 2026</td><td>Family Box</td><td>12 lbs</td><td>$129.00</td><td><span class="badge badge-info">In Transit</span></td><td><button class="btn btn-sm btn-outline" style="border-radius:6px;padding:4px 10px;"><i class="fas fa-file-pdf"></i></button></td></tr>
+              <tr><td>#FF-1011</td><td>Sep 23, 2026</td><td>Family Box</td><td>12 lbs</td><td>$129.00</td><td><span class="badge badge-success">Delivered</span></td><td><button class="btn btn-sm btn-outline" style="border-radius:6px;padding:4px 10px;"><i class="fas fa-file-pdf"></i></button></td></tr>
+              <tr><td>#FF-0998</td><td>Sep 16, 2026</td><td>Family Box</td><td>12 lbs</td><td>$129.00</td><td><span class="badge badge-success">Delivered</span></td><td><button class="btn btn-sm btn-outline" style="border-radius:6px;padding:4px 10px;"><i class="fas fa-file-pdf"></i></button></td></tr>
+              <tr><td>#FF-0981</td><td>Sep 9, 2026</td><td>Family Box</td><td>12 lbs</td><td>$129.00</td><td><span class="badge badge-success">Delivered</span></td><td><button class="btn btn-sm btn-outline" style="border-radius:6px;padding:4px 10px;"><i class="fas fa-file-pdf"></i></button></td></tr>
+              <tr><td>#FF-0964</td><td>Sep 2, 2026</td><td>Family Box</td><td>10 lbs</td><td>$129.00</td><td><span class="badge badge-success">Delivered</span></td><td><button class="btn btn-sm btn-outline" style="border-radius:6px;padding:4px 10px;"><i class="fas fa-file-pdf"></i></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== BILLING SECTION ===== -->
+    <div class="dash-section" id="billing" style="display:none;">
+      <div class="dash-header"><div><h1>Billing &amp; Invoices</h1><p>Manage your payment method and download invoices.</p></div></div>
+      <div class="grid-2col" style="gap:24px;margin-bottom:28px;">
+        <div class="billing-card"><h4>Next Payment</h4><span class="amount">$129.00</span><p>Due October 3, 2026 · Family Box Subscription</p><button class="btn btn-white btn-sm" style="margin-top:16px;"><i class="fas fa-edit"></i> Update Payment</button></div>
+        <div class="billing-card" style="background:linear-gradient(135deg,#1a1a2e,#16213e);"><h4 style="color:var(--accent-light);">Payment Method</h4><div style="font-size:1.2rem;font-weight:700;letter-spacing:0.2em;margin:12px 0;">•••• •••• •••• 4242</div><p>Visa ending in 4242 · Expires 08/28</p><button class="btn btn-outline-white btn-sm" style="margin-top:16px;"><i class="fas fa-credit-card"></i> Change Card</button></div>
+      </div>
+      <div class="table-wrap">
+        <div class="table-header"><span class="table-title">Invoice History</span><button class="btn btn-sm btn-outline"><i class="fas fa-download"></i> Download All</button></div>
+        <div>
+          <div class="invoice-row"><div><strong>#INV-2026-014</strong><p style="font-size:0.8rem;color:var(--text-muted);margin:2px 0 0;">Sep 30, 2026 · Family Box</p></div><span>$129.00</span><span class="invoice-status status-pending">Pending</span><button class="btn btn-sm btn-outline" style="border-radius:6px;padding:4px 12px;"><i class="fas fa-download"></i> PDF</button></div>
+          <div class="invoice-row"><div><strong>#INV-2026-013</strong><p style="font-size:0.8rem;color:var(--text-muted);margin:2px 0 0;">Sep 23, 2026 · Family Box</p></div><span>$129.00</span><span class="invoice-status status-paid">Paid</span><button class="btn btn-sm btn-outline" style="border-radius:6px;padding:4px 12px;"><i class="fas fa-download"></i> PDF</button></div>
+          <div class="invoice-row"><div><strong>#INV-2026-012</strong><p style="font-size:0.8rem;color:var(--text-muted);margin:2px 0 0;">Sep 16, 2026 · Family Box</p></div><span>$129.00</span><span class="invoice-status status-paid">Paid</span><button class="btn btn-sm btn-outline" style="border-radius:6px;padding:4px 12px;"><i class="fas fa-download"></i> PDF</button></div>
+          <div class="invoice-row"><div><strong>#INV-2026-011</strong><p style="font-size:0.8rem;color:var(--text-muted);margin:2px 0 0;">Sep 9, 2026 · Family Box</p></div><span>$129.00</span><span class="invoice-status status-paid">Paid</span><button class="btn btn-sm btn-outline" style="border-radius:6px;padding:4px 12px;"><i class="fas fa-download"></i> PDF</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PROFILE SECTION ===== -->
+    <div class="dash-section" id="profile" style="display:none;">
+      <div class="dash-header"><div><h1>My Profile</h1><p>Update your personal information and delivery address.</p></div></div>
+      <div class="sched-grid">
+        <div class="table-wrap">
+          <div class="table-header"><span class="table-title">Personal Information</span></div>
+          <div style="padding:24px;">
+            <div style="text-align:center;margin-bottom:28px;">
+              <div style="position:relative;width:96px;margin:0 auto;">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80" alt="Jennifer" style="width:96px;height:96px;border-radius:50%;object-fit:cover;border:4px solid var(--primary-light);" />
+                <button style="position:absolute;bottom:0;right:0;width:30px;height:30px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.75rem;border:none;cursor:pointer;"><i class="fas fa-camera"></i></button>
+              </div>
+              <p style="font-size:0.8rem;color:var(--text-muted);margin-top:8px;">Click to change photo</p>
+            </div>
+            <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-control" value="Jennifer" /></div>
+            <div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-control" value="Kowalski" /></div>
+            <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-control" value="jennifer.k@email.com" /></div>
+            <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-control" value="+1 (503) 555-0192" /></div>
+            <button class="btn btn-primary" onclick="FF.showToast('success','Profile Updated!','Your information has been saved.')">Save Changes</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-header"><span class="table-title">Delivery Address</span></div>
+          <div style="padding:24px;">
+            <div class="form-group"><label class="form-label">Street Address</label><input type="text" class="form-control" value="4821 Oak Lane" /></div>
+            <div class="form-group"><label class="form-label">City</label><input type="text" class="form-control" value="Portland" /></div>
+            <div class="grid-2col" style="gap:16px;">
+              <div class="form-group"><label class="form-label">State</label><select class="form-control"><option selected>Oregon</option><option>Washington</option><option>California</option></select></div>
+              <div class="form-group"><label class="form-label">ZIP</label><input type="text" class="form-control" value="97201" /></div>
+            </div>
+            <div class="form-group"><label class="form-label">Delivery Notes</label><textarea class="form-control" rows="3">Leave at front door — ring bell</textarea></div>
+            <button class="btn btn-primary" onclick="FF.showToast('success','Address Saved!','Delivery address updated.')">Update Address</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SETTINGS SECTION ===== -->
+    <div class="dash-section" id="settings" style="display:none;">
+      <div class="dash-header"><div><h1>Account Settings</h1><p>Manage notifications, preferences and security.</p></div></div>
+      <div class="sched-grid">
+        <div class="table-wrap">
+          <div class="table-header"><span class="table-title">Notification Preferences</span></div>
+          <div style="padding:24px;display:flex;flex-direction:column;gap:16px;">
+            <div class="setting-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);">
+              <div><strong style="font-size:0.9rem;">Delivery Reminders</strong><p style="font-size:0.82rem;color:var(--text-muted);margin:3px 0 0;">48hr before each delivery</p></div>
+              <label class="toggle-switch"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+            </div>
+            <div class="setting-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);">
+              <div><strong style="font-size:0.9rem;">Order Shipped Alerts</strong><p style="font-size:0.82rem;color:var(--text-muted);margin:3px 0 0;">Email when your box ships</p></div>
+              <label class="toggle-switch"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+            </div>
+            <div class="setting-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);">
+              <div><strong style="font-size:0.9rem;">Weekly Newsletter</strong><p style="font-size:0.82rem;color:var(--text-muted);margin:3px 0 0;">Recipes, farm stories and deals</p></div>
+              <label class="toggle-switch"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+            </div>
+            <div class="setting-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;">
+              <div><strong style="font-size:0.9rem;">Promotional Offers</strong><p style="font-size:0.82rem;color:var(--text-muted);margin:3px 0 0;">Exclusive subscriber discounts</p></div>
+              <label class="toggle-switch"><input type="checkbox" /><span class="toggle-slider"></span></label>
+            </div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-header"><span class="table-title">Security</span></div>
+          <div style="padding:24px;display:flex;flex-direction:column;gap:16px;">
+            <div class="form-group"><label class="form-label">Current Password</label><input type="password" class="form-control" placeholder="••••••••" /></div>
+            <div class="form-group"><label class="form-label">New Password</label><input type="password" class="form-control" placeholder="••••••••" /></div>
+            <div class="form-group"><label class="form-label">Confirm New Password</label><input type="password" class="form-control" placeholder="••••••••" /></div>
+            <button class="btn btn-primary" onclick="FF.showToast('success','Password Changed','Your password has been updated.')">Update Password</button>
+            <div style="padding-top:16px;border-top:1px solid var(--border);">
+              <p style="font-size:0.88rem;font-weight:600;margin-bottom:8px;">Two-Factor Authentication</p>
+              <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:12px;">Add an extra layer of security to your account.</p>
+              <button class="btn btn-outline btn-sm"><i class="fas fa-shield-alt"></i> Enable 2FA</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:24px;background:rgba(192,57,43,0.06);border:1px solid rgba(192,57,43,0.2);border-radius:var(--radius-lg);padding:24px;">
+        <h4 style="color:var(--red-meat);margin-bottom:8px;">Danger Zone</h4>
+        <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:16px;">Cancelling your subscription will stop all future deliveries. You'll keep access until your current billing period ends.</p>
+        <div class="btn-row" style="gap:12px;"><button class="btn btn-sm" style="border:2px solid var(--accent);color:var(--accent);border-radius:50px;padding:8px 18px;font-size:0.85rem;cursor:pointer;font-family:var(--font-body);font-weight:600;transition:all var(--transition);" onmouseover="this.style.background='var(--accent)';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='var(--accent)'"><i class="fas fa-pause"></i> Pause Subscription</button><button class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancel Subscription</button></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+  FF.initDashboard();
+  FF.initQtySelectors();
+  document.getElementById('sidebarToggle') && (document.getElementById('sidebarToggle').style.display = window.innerWidth <= 768 ? 'flex' : 'none');
+  window.addEventListener('resize', () => { document.getElementById('sidebarToggle') && (document.getElementById('sidebarToggle').style.display = window.innerWidth <= 768 ? 'flex' : 'none'); });
+  // Mobile sidebar backdrop: show/hide with the sidebar, tap to close
+  (function () {
+    var sb = document.getElementById('dashSidebar');
+    var bd = document.getElementById('sidebarBackdrop');
+    var tg = document.getElementById('sidebarToggle');
+    if (!sb || !bd) return;
+    function sync() { bd.classList.toggle('show', sb.classList.contains('open')); }
+    tg && tg.addEventListener('click', function () { setTimeout(sync, 0); });
+    bd.addEventListener('click', function () { sb.classList.remove('open'); sync(); });
+    sb.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setTimeout(sync, 60); }); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 768) { sb.classList.remove('open'); sync(); } });
+  })();
+</script>
+</body>
+</html>

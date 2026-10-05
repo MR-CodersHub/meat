@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FarmFresh Meats – Premium Local Meat & Poultry Delivery</title>
+  <meta name="description" content="Farm-to-door premium meat and poultry subscriptions. Fresh, local, humanely raised. Delivered weekly to your door." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span>
+      <span class="logo-text">Farm<strong>Fresh</strong> Meats</span>
+    </a>
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+      <li class="nav-item"><a href="home2.html" class="nav-link">Home 2</a></li>
+      <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+      <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+      <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon" id="themeIcon"></i>
+      </button>
+      <div class="profile-menu">
+        <button class="profile-toggle" id="profileToggle" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"><i class="fas fa-circle-user"></i></button>
+        <ul class="profile-dropdown">
+          <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+          <li><a href="dashboard.html"><i class="fas fa-user"></i> User Dashboard</a></li>
+          <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Dashboard</a></li>
+        </ul>
+      </div>
+      <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to right-to-left layout" aria-pressed="false" title="RTL">RTL</button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO SLIDER ===== -->
+<section class="hero-slider" id="home">
+  <div class="slides-wrapper" id="slidesWrapper">
+    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1546964124-0cce460f38ef?w=1600&q=80');">
+      <div class="slide-overlay"></div>
+      <div class="container slide-content">
+        <span class="slide-tag animate-fade-up"><i class="fas fa-leaf"></i> 100% Locally Sourced</span>
+        <h1 class="slide-title animate-fade-up">Farm-Fresh Meat<br><span class="text-accent">Delivered to Your Door</span></h1>
+        <p class="slide-subtitle animate-fade-up">Premium, humanely raised beef, pork, chicken and lamb. Direct from local farms to your table every week.</p>
+        <div class="slide-actions animate-fade-up">
+          <a href="login.html#register" class="btn btn-primary btn-lg">Start Your Subscription</a>
+          <a href="services.html" class="btn btn-ghost btn-lg">Explore Boxes</a>
+        </div>
+        <div class="slide-stats">
+          <div class="stat"><strong>500+</strong><span>Local Farms</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><strong>12K+</strong><span>Happy Families</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><strong>100%</strong><span>Hormone-Free</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=1600&q=80');">
+      <div class="slide-overlay"></div>
+      <div class="container slide-content">
+        <span class="slide-tag animate-fade-up"><i class="fas fa-drumstick-bite"></i> Premium Quality Cuts</span>
+        <h1 class="slide-title animate-fade-up">Handpicked Cuts,<br><span class="text-accent">Expert Butchery</span></h1>
+        <p class="slide-subtitle animate-fade-up">Every cut is hand-selected by our master butchers. No fillers, no preservatives — just honest, quality meat.</p>
+        <div class="slide-actions animate-fade-up">
+          <a href="services.html" class="btn btn-primary btn-lg">See Our Boxes</a>
+          <a href="about.html" class="btn btn-ghost btn-lg">Our Story</a>
+        </div>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1600&q=80');">
+      <div class="slide-overlay"></div>
+      <div class="container slide-content">
+        <span class="slide-tag animate-fade-up"><i class="fas fa-truck"></i> Free Weekly Delivery</span>
+        <h1 class="slide-title animate-fade-up">Flexible Plans,<br><span class="text-accent">Zero Commitment</span></h1>
+        <p class="slide-subtitle animate-fade-up">Pause, skip, or cancel anytime. Build your custom box, set your schedule.</p>
+        <div class="slide-actions animate-fade-up">
+          <a href="login.html#register" class="btn btn-primary btn-lg">Get Started Free</a>
+          <a href="contact.html" class="btn btn-ghost btn-lg">Talk to Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="slider-btn prev" id="sliderPrev"><i class="fas fa-chevron-left"></i></button>
+  <button class="slider-btn next" id="sliderNext"><i class="fas fa-chevron-right"></i></button>
+  <div class="slider-dots" id="sliderDots">
+    <button class="dot active" data-index="0"></button>
+    <button class="dot" data-index="1"></button>
+    <button class="dot" data-index="2"></button>
+  </div>
+</section>
+
+<!-- ===== SECTION 1: TRUST BAR ===== -->
+<section class="trust-bar">
+  <div class="container trust-grid">
+    <div class="trust-item"><i class="fas fa-seedling"></i><span>100% Grass-Fed &amp; Free-Range</span></div>
+    <div class="trust-item"><i class="fas fa-ban"></i><span>No Antibiotics or Hormones</span></div>
+    <div class="trust-item"><i class="fas fa-snowflake"></i><span>Flash Frozen &amp; Vacuum Sealed</span></div>
+    <div class="trust-item"><i class="fas fa-truck"></i><span>Free Delivery on First Box</span></div>
+    <div class="trust-item"><i class="fas fa-undo"></i><span>Skip or Cancel Anytime</span></div>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: FARM SOURCING STORY ===== -->
+<section class="section farm-story" id="story">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-images" data-aos="fade-right">
+        <div class="story-img-main">
+          <img src="https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=600&q=80" alt="Local farmer with cattle" loading="lazy" />
+        </div>
+        <div class="story-img-secondary">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&q=80" alt="Green farmland" loading="lazy" />
+        </div>
+        <div class="story-badge">
+          <span class="badge-year">Est.</span>
+          <strong>2016</strong>
+          <span>Farm Partner</span>
+        </div>
+      </div>
+      <div class="story-content" data-aos="fade-left">
+        <span class="section-tag">Our Sourcing Story</span>
+        <h2 class="section-title">From Trusted Local Farms<br>to Your Family Table</h2>
+        <p class="section-desc">We partner exclusively with small, family-owned farms within 200 miles of your door. Every animal is raised with care, on open pasture, with no antibiotics or added hormones — ever.</p>
+        <div class="story-features">
+          <div class="story-feature">
+            <div class="feature-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <strong>Hyper-Local Sourcing</strong>
+              <p>All meat comes from verified farms within our region, supporting local agriculture.</p>
+            </div>
+          </div>
+          <div class="story-feature">
+            <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+            <div>
+              <strong>USDA Certified &amp; Inspected</strong>
+              <p>Every batch is processed at USDA-inspected facilities. Full traceability guaranteed.</p>
+            </div>
+          </div>
+          <div class="story-feature">
+            <div class="feature-icon"><i class="fas fa-heart"></i></div>
+            <div>
+              <strong>Humane Animal Welfare</strong>
+              <p>Certified humane practices. Animals live stress-free on open pasture land.</p>
+            </div>
+          </div>
+        </div>
+        <a href="about.html" class="btn btn-primary mt-4">Meet Our Farm Partners</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3: FEATURED MEAT CATEGORIES ===== -->
+<section class="section section-alt categories-section" id="categories">
+  <div class="container">
+    <div class="section-header text-center" data-aos="fade-up">
+      <span class="section-tag">Shop by Category</span>
+      <h2 class="section-title">Premium Meat Selections</h2>
+      <p class="section-desc">From dry-aged steaks to heritage-breed pork and free-range poultry — explore our handpicked collection.</p>
+    </div>
+    <div class="filter-tabs" data-aos="fade-up">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="beef">Beef</button>
+      <button class="filter-btn" data-filter="poultry">Poultry</button>
+      <button class="filter-btn" data-filter="pork">Pork</button>
+      <button class="filter-btn" data-filter="lamb">Lamb</button>
+      <button class="filter-btn" data-filter="seafood">Seafood</button>
+    </div>
+    <div class="categories-grid" id="categoriesGrid">
+      <div class="category-card" data-category="beef" data-aos="fade-up">
+        <div class="cat-img">
+          <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=500&q=80" alt="Premium Beef" loading="lazy" />
+          <span class="cat-badge">Best Seller</span>
+        </div>
+        <div class="cat-body">
+          <h3>Premium Beef</h3>
+          <p>Dry-aged ribeyes, tenderloin, NY strips and ground beef from grass-fed Black Angus cattle.</p>
+          <div class="cat-footer">
+            <span class="cat-price">From $89/box</span>
+            <a href="services.html" class="btn btn-sm btn-primary">Shop Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="category-card" data-category="poultry" data-aos="fade-up" data-aos-delay="100">
+        <div class="cat-img">
+          <img src="https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=500&q=80" alt="Free-Range Poultry" loading="lazy" />
+          <span class="cat-badge fresh">Fresh</span>
+        </div>
+        <div class="cat-body">
+          <h3>Free-Range Poultry</h3>
+          <p>Whole chickens, turkey breasts, duck legs — certified free-range and antibiotic-free.</p>
+          <div class="cat-footer">
+            <span class="cat-price">From $65/box</span>
+            <a href="services.html" class="btn btn-sm btn-primary">Shop Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="category-card" data-category="pork" data-aos="fade-up" data-aos-delay="200">
+        <div class="cat-img">
+          <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=500&q=80" alt="Heritage Pork" loading="lazy" />
+        </div>
+        <div class="cat-body">
+          <h3>Heritage Pork</h3>
+          <p>Berkshire and Duroc heritage pork — chops, ribs, bacon, sausage and whole loins.</p>
+          <div class="cat-footer">
+            <span class="cat-price">From $75/box</span>
+            <a href="services.html" class="btn btn-sm btn-primary">Shop Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="category-card" data-category="lamb" data-aos="fade-up" data-aos-delay="300">
+        <div class="cat-img">
+          <img src="https://images.unsplash.com/photo-1604908177453-7462950a6a3b?w=500&q=80" alt="Pasture-Raised Lamb" loading="lazy" />
+          <span class="cat-badge new">New</span>
+        </div>
+        <div class="cat-body">
+          <h3>Pasture-Raised Lamb</h3>
+          <p>Rack of lamb, shoulder roasts, ground lamb and chops from our partner farms.</p>
+          <div class="cat-footer">
+            <span class="cat-price">From $95/box</span>
+            <a href="services.html" class="btn btn-sm btn-primary">Shop Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="category-card" data-category="seafood" data-aos="fade-up" data-aos-delay="400">
+        <div class="cat-img">
+          <img src="https://images.unsplash.com/photo-1534482421-64566f976cfa?w=500&q=80" alt="Wild-Caught Seafood" loading="lazy" />
+        </div>
+        <div class="cat-body">
+          <h3>Wild-Caught Seafood</h3>
+          <p>Salmon fillets, wild shrimp, scallops and halibut — sustainably caught.</p>
+          <div class="cat-footer">
+            <span class="cat-price">From $99/box</span>
+            <a href="services.html" class="btn btn-sm btn-primary">Shop Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="category-card" data-category="beef" data-aos="fade-up" data-aos-delay="500">
+        <div class="cat-img">
+          <img src="https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?w=500&q=80" alt="Custom Mix Box" loading="lazy" />
+          <span class="cat-badge">Popular</span>
+        </div>
+        <div class="cat-body">
+          <h3>Custom Mix Box</h3>
+          <p>Mix and match across all categories. Build your perfect weekly box from our full selection.</p>
+          <div class="cat-footer">
+            <span class="cat-price">From $79/box</span>
+            <a href="services.html" class="btn btn-sm btn-primary">Customize</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 4: QUALITY PROMISE ===== -->
+<section class="section quality-section" id="quality">
+  <div class="container">
+    <div class="quality-grid">
+      <div class="quality-content" data-aos="fade-right">
+        <span class="section-tag">Our Quality Promise</span>
+        <h2 class="section-title">Why FarmFresh Is Different</h2>
+        <p class="section-desc">We hold ourselves to a higher standard at every step — from the farms we partner with to the moment your box arrives.</p>
+        <div class="quality-list">
+          <div class="quality-item">
+            <div class="q-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="q-text">
+              <strong>48-Hour Farm-to-Door Guarantee</strong>
+              <p>Meat is cut, packed and shipped within 48 hours of processing.</p>
+            </div>
+          </div>
+          <div class="quality-item">
+            <div class="q-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="q-text">
+              <strong>Vacuum-Sealed Freshness</strong>
+              <p>Industrial vacuum sealing preserves flavor and extends shelf life.</p>
+            </div>
+          </div>
+          <div class="quality-item">
+            <div class="q-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="q-text">
+              <strong>Eco-Friendly Insulated Packaging</strong>
+              <p>100% recyclable wool-lined boxes with dry ice. Zero plastic waste.</p>
+            </div>
+          </div>
+          <div class="quality-item">
+            <div class="q-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="q-text">
+              <strong>Freshness Guaranteed or Full Refund</strong>
+              <p>Not satisfied? We'll replace or fully refund — no questions asked.</p>
+            </div>
+          </div>
+        </div>
+        <div class="quality-certs">
+          <div class="cert"><i class="fas fa-award"></i> USDA Certified</div>
+          <div class="cert"><i class="fas fa-leaf"></i> Non-GMO Project</div>
+          <div class="cert"><i class="fas fa-paw"></i> Certified Humane</div>
+        </div>
+      </div>
+      <div class="quality-visual" data-aos="fade-left">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Premium packaged meat" loading="lazy" class="quality-img" />
+        <div class="quality-card">
+          <div class="qc-icon"><i class="fas fa-star"></i></div>
+          <div>
+            <strong>4.9/5 Rating</strong>
+            <p>From 3,200+ verified reviews</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 5: DELIVERY PROCESS ===== -->
+<section class="section section-alt delivery-section" id="delivery">
+  <div class="container">
+    <div class="section-header text-center" data-aos="fade-up">
+      <span class="section-tag">How It Works</span>
+      <h2 class="section-title">From Farm to Your Front Door</h2>
+      <p class="section-desc">A simple 4-step process that brings the best local meat directly to you.</p>
+    </div>
+    <div class="process-steps" data-aos="fade-up">
+      <div class="process-step">
+        <div class="step-icon"><i class="fas fa-box-open"></i></div>
+        <h3>Choose Your Box</h3>
+        <p>Pick a curated box or customize your own. Select cuts, quantities and frequency.</p>
+      </div>
+      <div class="process-connector"><i class="fas fa-arrow-right"></i></div>
+      <div class="process-step">
+        <div class="step-icon"><i class="fas fa-tractor"></i></div>
+        <h3>Harvested Fresh</h3>
+        <p>Our farm partners harvest and process your order to the highest quality standards.</p>
+      </div>
+      <div class="process-connector"><i class="fas fa-arrow-right"></i></div>
+      <div class="process-step">
+        <div class="step-icon"><i class="fas fa-temperature-low"></i></div>
+        <h3>Packed &amp; Flash Frozen</h3>
+        <p>Each cut is vacuum-sealed and flash frozen to lock in maximum freshness.</p>
+      </div>
+      <div class="process-connector"><i class="fas fa-arrow-right"></i></div>
+      <div class="process-step">
+        <div class="step-icon"><i class="fas fa-home"></i></div>
+        <h3>Delivered to You</h3>
+        <p>Your insulated box arrives on your chosen day. Track in real-time via your dashboard.</p>
+      </div>
+    </div>
+    <div class="text-center mt-5" data-aos="fade-up">
+      <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=1000&q=80" alt="Delivery to door" loading="lazy" class="delivery-img" />
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 6: SUBSCRIPTION CTA ===== -->
+<section class="section cta-section" id="subscribe">
+  <div class="container">
+    <div class="cta-inner" data-aos="fade-up">
+      <div class="cta-content">
+        <span class="section-tag light">Special Offer</span>
+        <h2 class="cta-title">Start Your Subscription Today</h2>
+        <p class="cta-desc">Get 25% off your first box plus free delivery forever. Join 12,000+ families who never worry about where their meat comes from.</p>
+        <div class="cta-features">
+          <span><i class="fas fa-check"></i> No commitment</span>
+          <span><i class="fas fa-check"></i> Skip anytime</span>
+          <span><i class="fas fa-check"></i> Cancel anytime</span>
+          <span><i class="fas fa-check"></i> Free delivery</span>
+        </div>
+        <div class="cta-actions">
+          <a href="login.html#register" class="btn btn-white btn-lg">Get 25% Off First Box</a>
+          <a href="services.html" class="btn btn-outline-white btn-lg">View All Plans</a>
+        </div>
+      </div>
+      <div class="cta-image">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Premium food delivery" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span>
+        <span class="logo-text">Farm<strong>Fresh</strong> Meats</span>
+      </a>
+      <p>Premium farm-to-door meat delivery. Local. Fresh. Sustainable.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="home2.html">Home 2</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="services.html">Meat Box Subscription</a></li>
+        <li><a href="services.html">Custom Boxes</a></li>
+        <li><a href="services.html">Bulk Orders</a></li>
+        <li><a href="services.html">Doorstep Delivery</a></li>
+        <li><a href="services.html">Corporate Orders</a></li>
+      </ul>
+    </div>
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Get weekly recipes, farm updates and exclusive subscriber deals.</p>
+      <form class="newsletter-form" id="footerNewsletter">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+      <div class="footer-contact-info">
+        <p><i class="fas fa-phone"></i> +1 (800) 555-FARM</p>
+        <p><i class="fas fa-envelope"></i> hello@farmfreshmeats.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Portland, Oregon 97201</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; 2026 FarmFresh Meats. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+<script src="js/main.js"></script>
+</body>
+</html>

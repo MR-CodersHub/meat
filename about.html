@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us – FarmFresh Meats | Our Story, Mission & Team</title>
+  <meta name="description" content="Learn the story behind FarmFresh Meats — our founding mission, farm partnerships, dedicated team, and commitment to quality." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .team-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:28px; }
+    .team-card { background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);text-align:center;transition:all var(--transition); }
+    .team-card:hover { transform:translateY(-8px);box-shadow:var(--shadow-lg); }
+    .team-img { height:260px;overflow:hidden;position:relative;background:var(--border); }
+    .team-img img { width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;transition:transform 0.5s ease; }
+    .team-card:hover .team-img img { transform:scale(1.06); }
+    .team-social { position:absolute;bottom:-50px;left:0;right:0;display:flex;justify-content:center;gap:8px;transition:bottom var(--transition);padding:12px; }
+    .team-card:hover .team-social { bottom:0; }
+    .team-social a { width:34px;height:34px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;transition:background var(--transition); }
+    .team-social a:hover { background:var(--accent); }
+    .team-body { padding:20px; }
+    .team-body h3 { font-size:1.05rem;margin-bottom:4px; }
+    .team-body span { font-size:0.82rem;color:var(--text-muted); }
+    .values-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:28px; }
+    .value-card { background:var(--surface);border-radius:var(--radius-lg);padding:36px 28px;border:1px solid var(--border);text-align:center;transition:all var(--transition); }
+    .value-card:hover { border-color:var(--primary);box-shadow:var(--shadow-md);transform:translateY(-4px); }
+    .value-icon { width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;margin:0 auto 20px; }
+    .value-card h3 { font-size:1.1rem;margin-bottom:10px; }
+    .value-card p { font-size:0.9rem;color:var(--text-muted);line-height:1.65; }
+    .milestones { position:relative;padding:10px 0;max-width:780px;margin:0 auto; }
+    .milestones::before { content:'';position:absolute;left:39px;top:0;bottom:0;width:2px;background:var(--border); }
+    .milestone { display:flex;gap:24px;align-items:flex-start;margin-bottom:32px;position:relative; }
+    .milestone:last-child { margin-bottom:0; }
+    .milestone-content { flex:1;background:var(--surface);border-radius:var(--radius-md);padding:28px;border:1px solid var(--border);box-shadow:var(--shadow-sm); }
+    .milestone-content h3 { font-size:1.1rem;margin-bottom:8px; }
+    .milestone-content p { font-size:0.9rem;color:var(--text-muted); }
+    .milestone-year { width:80px;height:80px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.85rem;font-weight:700;text-align:center;flex-shrink:0;z-index:1;line-height:1.2; }
+    @media(max-width:1024px){ .team-grid{grid-template-columns:repeat(2,1fr);} .values-grid{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:768px){ .team-grid{grid-template-columns:repeat(2,1fr);} .milestones::before{left:29px;} .milestone{gap:16px;margin-bottom:24px;} .milestone-year{width:60px;height:60px;font-size:0.75rem;} .milestone-content{padding:20px;} }
+    @media(max-width:480px){ .team-grid{grid-template-columns:1fr;} .values-grid{grid-template-columns:1fr;} .story-img-main img{border-radius:var(--radius-md);} }
+    @media(max-width:360px){ .team-img{height:220px;} .value-card{padding:28px 20px;} }
+  </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="index.html" class="nav-logo"><span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span><span class="logo-text">Farm<strong>Fresh</strong> Meats</span></a>
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="home2.html" class="nav-link">Home 2</a></li>
+      <li class="nav-item"><a href="about.html" class="nav-link active">About Us</a></li>
+      <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+      <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <div class="profile-menu">
+        <button class="profile-toggle" id="profileToggle" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"><i class="fas fa-circle-user"></i></button>
+        <ul class="profile-dropdown">
+          <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+          <li><a href="dashboard.html"><i class="fas fa-user"></i> User Dashboard</a></li>
+          <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Dashboard</a></li>
+        </ul>
+      </div>
+      <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to right-to-left layout" aria-pressed="false" title="RTL">RTL</button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== SECTION 1: PAGE HERO ===== -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80');">
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <h1>Our Story &amp; Mission</h1>
+    <p>From a small family farm in 2016 to serving 12,000+ families — here's how FarmFresh Meats was built on a promise of quality.</p>
+    <div class="hero-ctas">
+      <a href="login.html#register" class="btn btn-primary">Start Your Subscription</a>
+      <a href="services.html" class="btn btn-ghost">Explore Our Boxes</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: STORY + MISSION ===== -->
+<section class="section">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-images" data-aos="fade-right">
+        <div class="story-img-main"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=700&q=80" alt="Our founders" loading="lazy" /></div>
+        <div class="story-img-secondary"><img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&q=80" alt="Farm partners" loading="lazy" /></div>
+        <div class="story-badge"><span class="badge-year">Est.</span><strong>2016</strong><span>Founded</span></div>
+      </div>
+      <div class="story-content" data-aos="fade-left">
+        <span class="section-tag">Who We Are</span>
+        <h2 class="section-title">Built on a Simple Promise:<br>Better Meat, Honestly Raised</h2>
+        <p class="section-desc">FarmFresh Meats was founded by Tom and Lisa Hansen after they struggled to find quality, honest meat for their growing family. Frustrated by supermarket labels and factory farming, they drove to a local farm — and what they found changed everything.</p>
+        <p style="color:var(--text-muted);font-size:0.95rem;line-height:1.8;margin-top:12px;">They partnered with 12 local farms to create a direct-to-consumer subscription. Today, we work with 500+ farms across the Pacific Northwest, delivering to 12,000+ families every week. Our mission hasn't changed: give every family access to honest, transparently sourced meat from farmers they can trust.</p>
+        <div class="stack-480" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px;">
+          <div style="text-align:center;padding:24px;background:var(--bg-alt);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <strong style="font-size:2rem;font-family:var(--font-head);color:var(--primary);" data-count="500" data-suffix="+">0+</strong>
+            <p style="font-size:0.85rem;color:var(--text-muted);margin:0;">Farm Partners</p>
+          </div>
+          <div style="text-align:center;padding:24px;background:var(--bg-alt);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <strong style="font-size:2rem;font-family:var(--font-head);color:var(--primary);" data-count="12000" data-suffix="+">0+</strong>
+            <p style="font-size:0.85rem;color:var(--text-muted);margin:0;">Happy Families</p>
+          </div>
+          <div style="text-align:center;padding:24px;background:var(--bg-alt);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <strong style="font-size:2rem;font-family:var(--font-head);color:var(--primary);" data-count="8">0</strong>
+            <p style="font-size:0.85rem;color:var(--text-muted);margin:0;">States Served</p>
+          </div>
+          <div style="text-align:center;padding:24px;background:var(--bg-alt);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <strong style="font-size:2rem;font-family:var(--font-head);color:var(--primary);" data-count="4" data-suffix=".9/5">0/5</strong>
+            <p style="font-size:0.85rem;color:var(--text-muted);margin:0;">Average Rating</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3: CORE VALUES ===== -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header text-center" data-aos="fade-up" style="margin-bottom:56px;">
+      <span class="section-tag">What Drives Us</span>
+      <h2 class="section-title">Our Core Values</h2>
+      <p class="section-desc">These aren't marketing slogans — they're the standards we hold ourselves to every single day.</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card" data-aos="fade-up">
+        <div class="value-icon"><i class="fas fa-handshake"></i></div>
+        <h3>Radical Transparency</h3>
+        <p>Every package includes the farm name, animal ID and harvest date. We believe you deserve to know exactly where your food comes from.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="value-icon"><i class="fas fa-leaf"></i></div>
+        <h3>Sustainable Agriculture</h3>
+        <p>We only partner with farms that use regenerative practices — improving soil health, sequestering carbon and protecting watersheds.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="value-icon"><i class="fas fa-paw"></i></div>
+        <h3>Humane Animal Welfare</h3>
+        <p>All animals are raised on open pasture with full freedom of movement. We do not work with farms that use confinement or battery cage systems.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="value-icon"><i class="fas fa-users"></i></div>
+        <h3>Community First</h3>
+        <p>We pay farmers 30% more than commodity markets. Thriving local farms mean stronger local communities and a more resilient food system.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="value-icon"><i class="fas fa-medal"></i></div>
+        <h3>Uncompromising Quality</h3>
+        <p>Every batch is taste-tested by our team. We'd rather deliver less than deliver something that doesn't meet our standards.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="500">
+        <div class="value-icon"><i class="fas fa-recycle"></i></div>
+        <h3>Zero Waste Commitment</h3>
+        <p>Our packaging is 100% recyclable. We're working toward carbon-neutral delivery by 2027 through EV fleet and carbon offset programs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 4: TEAM ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header text-center" data-aos="fade-up" style="margin-bottom:56px;">
+      <span class="section-tag">Meet Our Team</span>
+      <h2 class="section-title">The People Behind Your Box</h2>
+      <p class="section-desc">Farmers, butchers, chefs, logistics experts and customer heroes — all united by one passion.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card" data-aos="fade-up">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=faces&q=80" alt="Tom Hansen" loading="lazy" />
+          <div class="team-social">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="team-body"><h3>Tom Hansen</h3><span>Co-Founder &amp; CEO</span></div>
+      </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop&crop=faces&q=80" alt="Lisa Hansen" loading="lazy" />
+          <div class="team-social">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="team-body"><h3>Lisa Hansen</h3><span>Co-Founder &amp; CMO</span></div>
+      </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=faces&q=80" alt="Marcus Webb" loading="lazy" />
+          <div class="team-social">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="team-body"><h3>Marcus Webb</h3><span>Head Butcher &amp; Quality</span></div>
+      </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop&crop=faces&q=80" alt="Priya Sharma" loading="lazy" />
+          <div class="team-social">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="team-body"><h3>Priya Sharma</h3><span>Farm Partnership Director</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 5: MILESTONES ===== -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header text-center" data-aos="fade-up" style="margin-bottom:60px;">
+      <span class="section-tag">Our Journey</span>
+      <h2 class="section-title">How We Got Here</h2>
+    </div>
+    <div class="milestones">
+      <div class="milestone" data-aos="fade-up">
+        <div class="milestone-year">2016</div>
+        <div class="milestone-content">
+          <h3>FarmFresh Founded</h3>
+          <p>Tom and Lisa Hansen launch FarmFresh Meats from their garage, partnering with 12 local farms and serving 80 founding subscribers in Portland.</p>
+        </div>
+      </div>
+      <div class="milestone" data-aos="fade-up">
+        <div class="milestone-year">2018</div>
+        <div class="milestone-content">
+          <h3>1,000 Subscribers Milestone</h3>
+          <p>After viral word-of-mouth and a feature in Bon Appétit magazine, we hit 1,000 subscribers and opened our first dedicated processing facility.</p>
+        </div>
+      </div>
+      <div class="milestone" data-aos="fade-up">
+        <div class="milestone-year">2020</div>
+        <div class="milestone-content">
+          <h3>Certified Humane Partnership</h3>
+          <p>We became the first meat subscription service in Oregon to achieve full Certified Humane® accreditation across our entire farm network.</p>
+        </div>
+      </div>
+      <div class="milestone" data-aos="fade-up">
+        <div class="milestone-year">2022</div>
+        <div class="milestone-content">
+          <h3>Pacific Northwest Expansion</h3>
+          <p>Expanded to 8 states, onboarded 300+ new farm partners, and launched the Athlete Box and Bulk programs to serve new audiences.</p>
+        </div>
+      </div>
+      <div class="milestone" data-aos="fade-up">
+        <div class="milestone-year">2026</div>
+        <div class="milestone-content">
+          <h3>12,000 Families &amp; Growing</h3>
+          <p>Today FarmFresh serves over 12,000 families weekly. We're working toward carbon-neutral delivery and partnering with 500+ farms.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 6: CERTIFICATIONS + CTA ===== -->
+<section class="section">
+  <div class="container">
+    <div class="stack-768" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+      <div data-aos="fade-right">
+        <span class="section-tag">Certified &amp; Trusted</span>
+        <h2 class="section-title">Verified by the Organizations<br>That Matter Most</h2>
+        <p class="section-desc">We don't just claim to be premium — we're verified, certified and accountable to rigorous third-party standards.</p>
+        <div class="stack-480" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;">
+          <div style="padding:24px;background:var(--bg-alt);border-radius:var(--radius-md);border:1px solid var(--border);text-align:center;">
+            <i class="fas fa-award" style="font-size:2rem;color:var(--primary);margin-bottom:12px;display:block;"></i>
+            <strong>USDA Certified</strong>
+            <p style="font-size:0.82rem;color:var(--text-muted);margin:4px 0 0;">Organic &amp; Process Verified</p>
+          </div>
+          <div style="padding:24px;background:var(--bg-alt);border-radius:var(--radius-md);border:1px solid var(--border);text-align:center;">
+            <i class="fas fa-paw" style="font-size:2rem;color:var(--primary);margin-bottom:12px;display:block;"></i>
+            <strong>Certified Humane®</strong>
+            <p style="font-size:0.82rem;color:var(--text-muted);margin:4px 0 0;">Full Farm Network</p>
+          </div>
+          <div style="padding:24px;background:var(--bg-alt);border-radius:var(--radius-md);border:1px solid var(--border);text-align:center;">
+            <i class="fas fa-leaf" style="font-size:2rem;color:var(--primary);margin-bottom:12px;display:block;"></i>
+            <strong>Non-GMO Project</strong>
+            <p style="font-size:0.82rem;color:var(--text-muted);margin:4px 0 0;">Verified since 2019</p>
+          </div>
+          <div style="padding:24px;background:var(--bg-alt);border-radius:var(--radius-md);border:1px solid var(--border);text-align:center;">
+            <i class="fas fa-recycle" style="font-size:2rem;color:var(--primary);margin-bottom:12px;display:block;"></i>
+            <strong>1% For The Planet</strong>
+            <p style="font-size:0.82rem;color:var(--text-muted);margin:4px 0 0;">Committed member</p>
+          </div>
+        </div>
+      </div>
+      <div data-aos="fade-left">
+        <img src="https://images.unsplash.com/photo-1500076656116-558758c991c1?w=600&q=80" alt="Certified farm" loading="lazy" style="width:100%;height:420px;object-fit:cover;border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);" />
+        <div style="margin-top:32px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));border-radius:var(--radius-lg);padding:32px;color:#fff;">
+          <h3 style="color:#fff;font-size:1.3rem;margin-bottom:12px;">Ready to Join Our Community?</h3>
+          <p style="color:rgba(255,255,255,0.85);font-size:0.9rem;margin-bottom:20px;">Start with 25% off your first box. No contracts, cancel anytime.</p>
+          <a href="login.html#register" class="btn btn-white">Start Subscription</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span>
+        <span class="logo-text">Farm<strong>Fresh</strong> Meats</span>
+      </a>
+      <p>Premium farm-to-door meat delivery. Local. Fresh. Sustainable.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="home2.html">Home 2</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="services.html">Meat Box Subscription</a></li>
+        <li><a href="services.html">Custom Boxes</a></li>
+        <li><a href="services.html">Bulk Orders</a></li>
+        <li><a href="services.html">Doorstep Delivery</a></li>
+        <li><a href="services.html">Corporate Orders</a></li>
+      </ul>
+    </div>
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Get weekly recipes, farm updates and exclusive subscriber deals.</p>
+      <form class="newsletter-form" id="footerNewsletter">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+      <div class="footer-contact-info">
+        <p><i class="fas fa-phone"></i> +1 (800) 555-FARM</p>
+        <p><i class="fas fa-envelope"></i> hello@farmfreshmeats.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Portland, Oregon 97201</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; 2026 FarmFresh Meats. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+<script src="js/main.js"></script>
+</body>
+</html>

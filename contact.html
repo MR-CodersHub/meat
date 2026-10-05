@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us – FarmFresh Meats | Get in Touch</title>
+  <meta name="description" content="Contact FarmFresh Meats for subscription help, bulk order inquiries, delivery questions, or to connect with our team." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .contact-layout { display:grid; grid-template-columns:1fr 1.4fr; gap:60px; align-items:start; }
+    .contact-info-card { background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 100%); border-radius:var(--radius-xl); padding:48px 40px; color:#fff; }
+    .contact-info-card h2 { color:#fff; font-size:1.8rem; margin-bottom:12px; }
+    .contact-info-card p { color:rgba(255,255,255,0.85); font-size:0.95rem; margin-bottom:40px; line-height:1.7; }
+    .contact-method { display:flex; gap:16px; align-items:flex-start; margin-bottom:32px; }
+    .cm-icon { width:48px; height:48px; background:rgba(255,255,255,0.15); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
+    .cm-text strong { display:block; color:#fff; margin-bottom:4px; font-size:0.95rem; }
+    .cm-text span { color:rgba(255,255,255,0.75); font-size:0.88rem; }
+    .cm-text a { color:rgba(255,255,255,0.9); text-decoration:none; transition:color var(--transition); }
+    .cm-text a:hover { color:var(--accent-light); }
+    .contact-social { display:flex; gap:12px; margin-top:40px; padding-top:32px; border-top:1px solid rgba(255,255,255,0.15); }
+    .contact-social a { width:40px; height:40px; background:rgba(255,255,255,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; transition:all var(--transition); }
+    .contact-social a:hover { background:var(--accent); transform:translateY(-3px); }
+    .contact-form-wrap { background:var(--surface); border-radius:var(--radius-xl); padding:48px; border:1px solid var(--border); box-shadow:var(--shadow-md); }
+    .contact-form-wrap h3 { font-size:1.5rem; margin-bottom:8px; }
+    .contact-form-wrap p { font-size:0.9rem; color:var(--text-muted); margin-bottom:28px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .subject-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+    .subject-tab { padding:8px 18px; border-radius:50px; font-size:0.82rem; font-weight:600; border:2px solid var(--border); color:var(--text-muted); cursor:pointer; transition:all var(--transition); font-family:var(--font-body); }
+    .subject-tab:hover, .subject-tab.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+    .map-wrap { border-radius:var(--radius-xl); overflow:hidden; height:380px; border:1px solid var(--border); position:relative; }
+    .map-wrap iframe { width:100%; height:100%; border:0; display:block; }
+    .map-link-overlay { position:absolute; bottom:16px; left:16px; box-shadow:var(--shadow-md); }
+    .office-hours { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:32px; }
+    .hour-item { display:flex; justify-content:space-between; padding:10px 16px; background:var(--surface); border-radius:var(--radius-sm); font-size:0.88rem; border:1px solid var(--border); }
+    .hour-item strong { color:var(--text); }
+    .hour-item span { color:var(--text-muted); }
+    .faq-quick { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .cta-email-input::placeholder { color: rgba(255,255,255,0.8); opacity: 1; }
+    .cta-email-input::-ms-input-placeholder { color: rgba(255,255,255,0.8); }
+    @media(max-width:1024px){ .contact-layout{grid-template-columns:1fr;} .faq-quick{grid-template-columns:1fr;} }
+    @media(max-width:640px){ .form-row{grid-template-columns:1fr;} .office-hours{grid-template-columns:1fr;} }
+    @media(max-width:768px){ .contact-form-wrap{padding:32px 24px;} .contact-info-card{padding:36px 28px;} .map-wrap{height:320px;} }
+    @media(max-width:360px){ .contact-form-wrap{padding:24px 18px;} .contact-info-card{padding:28px 20px;} .map-wrap{height:280px;} .cta-email-input{min-width:0 !important;width:100%;} }
+  </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="index.html" class="nav-logo"><span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span><span class="logo-text">Farm<strong>Fresh</strong> Meats</span></a>
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="home2.html" class="nav-link">Home 2</a></li>
+      <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+      <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+      <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link active">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <div class="profile-menu">
+        <button class="profile-toggle" id="profileToggle" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"><i class="fas fa-circle-user"></i></button>
+        <ul class="profile-dropdown">
+          <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+          <li><a href="dashboard.html"><i class="fas fa-user"></i> User Dashboard</a></li>
+          <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Dashboard</a></li>
+        </ul>
+      </div>
+      <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to right-to-left layout" aria-pressed="false" title="RTL">RTL</button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80');">
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <h1>Get in Touch</h1>
+    <p>Questions, feedback, bulk inquiries or just want to say hello — our team typically responds within 2 hours during business days.</p>
+    <div class="hero-ctas">
+      <a href="login.html#register" class="btn btn-primary">Start Subscription</a>
+      <a href="services.html" class="btn btn-ghost">View Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: CONTACT FORM + INFO -->
+<section class="section">
+  <div class="container">
+    <div class="contact-layout">
+      <!-- Info Card -->
+      <div class="contact-info-card" data-aos="fade-right">
+        <h2>We'd Love to Hear From You</h2>
+        <p>Whether you're a current subscriber with a delivery question, a restaurant owner interested in wholesale, or someone curious about our farms — reach out anytime.</p>
+
+        <div class="contact-method">
+          <div class="cm-icon"><i class="fas fa-phone"></i></div>
+          <div class="cm-text">
+            <strong>Phone</strong>
+            <span><a href="tel:+18005553276">+1 (800) 555-FARM</a><br />Mon–Fri 8am–6pm PT</span>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="cm-icon"><i class="fas fa-envelope"></i></div>
+          <div class="cm-text">
+            <strong>Email</strong>
+            <span><a href="mailto:hello@farmfreshmeats.com">hello@farmfreshmeats.com</a><br />Response within 2 hours</span>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="cm-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="cm-text">
+            <strong>Headquarters</strong>
+            <span>1240 SW Farm Road<br />Portland, Oregon 97201</span>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="cm-icon"><i class="fas fa-warehouse"></i></div>
+          <div class="cm-text">
+            <strong>Processing Facility</strong>
+            <span>4800 Rural Route 9<br />Tillamook County, OR 97141</span>
+          </div>
+        </div>
+
+        <!-- Office Hours -->
+        <div style="margin-top:32px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.15);">
+          <strong style="color:#fff;display:block;margin-bottom:16px;">Office Hours</strong>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;font-size:0.88rem;"><span style="color:rgba(255,255,255,0.8);">Mon – Fri</span><span style="color:var(--accent-light);font-weight:600;">8:00 AM – 6:00 PM PT</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.88rem;"><span style="color:rgba(255,255,255,0.8);">Saturday</span><span style="color:var(--accent-light);font-weight:600;">9:00 AM – 2:00 PM PT</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.88rem;"><span style="color:rgba(255,255,255,0.8);">Sunday</span><span style="color:rgba(255,255,255,0.5);">Closed</span></div>
+          </div>
+        </div>
+
+        <div class="contact-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="contact-form-wrap" data-aos="fade-left">
+        <h3>Send Us a Message</h3>
+        <p>Fill out the form below and a member of our team will respond within 2 business hours.</p>
+
+        <!-- Subject Tabs -->
+        <div style="margin-bottom:8px;"><label class="form-label">What's this about?</label></div>
+        <div class="subject-tabs">
+          <button class="subject-tab active" type="button">General Inquiry</button>
+          <button class="subject-tab" type="button">Subscription Help</button>
+          <button class="subject-tab" type="button">Bulk / Wholesale</button>
+          <button class="subject-tab" type="button">Delivery Issue</button>
+          <button class="subject-tab" type="button">Farm Partnership</button>
+        </div>
+
+        <form data-validate id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="cf-name">First Name *</label>
+              <input type="text" id="cf-name" class="form-control" placeholder="Jane" required />
+              <span class="form-error">Name is required</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cf-lname">Last Name *</label>
+              <input type="text" id="cf-lname" class="form-control" placeholder="Smith" required />
+              <span class="form-error">Last name is required</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="cf-email">Email Address *</label>
+              <input type="email" id="cf-email" class="form-control" placeholder="jane@example.com" required />
+              <span class="form-error">Valid email required</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cf-phone">Phone Number</label>
+              <input type="tel" id="cf-phone" class="form-control" placeholder="+1 (555) 000-0000" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cf-subject">Subject *</label>
+            <input type="text" id="cf-subject" class="form-control" placeholder="How can we help you?" required />
+            <span class="form-error">Subject is required</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cf-message">Message *</label>
+            <textarea id="cf-message" class="form-control" rows="5" placeholder="Tell us what's on your mind..." required></textarea>
+            <span class="form-error">Message is required</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+            <input type="checkbox" id="cf-consent" style="width:16px;height:16px;accent-color:var(--primary);" />
+            <label for="cf-consent" style="font-size:0.85rem;color:var(--text-muted);">I agree to receive occasional updates from FarmFresh Meats. Unsubscribe anytime.</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: STATS / TRUST -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="stats-grid" data-aos="fade-up">
+      <div class="stat-card"><span class="stat-num" data-count="2" data-suffix="hr">0hr</span><span class="stat-label">Average Response Time</span></div>
+      <div class="stat-card"><span class="stat-num" data-count="98" data-suffix="%">0%</span><span class="stat-label">Customer Satisfaction Rate</span></div>
+      <div class="stat-card"><span class="stat-num" data-count="12000" data-suffix="+">0+</span><span class="stat-label">Happy Subscribers Served</span></div>
+      <div class="stat-card"><span class="stat-num" data-count="500" data-suffix="+">0+</span><span class="stat-label">Farm Partners Nationwide</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: MAP + DIRECTIONS -->
+<section class="section">
+  <div class="container">
+    <div class="stack-768" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+      <div data-aos="fade-right">
+        <span class="section-tag">Find Us</span>
+        <h2 class="section-title">Visit Our Portland HQ</h2>
+        <p class="section-desc">Our headquarters and customer experience center is open to the public Monday through Saturday. Come visit our retail counter for walk-in purchases.</p>
+        <div style="display:flex;flex-direction:column;gap:16px;margin-top:28px;">
+          <div style="display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--bg-alt);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <i class="fas fa-map-marker-alt" style="color:var(--primary);font-size:1.1rem;flex-shrink:0;margin-top:2px;"></i>
+            <div><strong>Address</strong><p style="font-size:0.88rem;color:var(--text-muted);margin:4px 0 0;">1240 SW Farm Road, Portland, Oregon 97201</p></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--bg-alt);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <i class="fas fa-car" style="color:var(--primary);font-size:1.1rem;flex-shrink:0;margin-top:2px;"></i>
+            <div><strong>Parking</strong><p style="font-size:0.88rem;color:var(--text-muted);margin:4px 0 0;">Free parking available in our dedicated lot on SW Farm Road.</p></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--bg-alt);border-radius:var(--radius-md);border:1px solid var(--border);">
+            <i class="fas fa-bus" style="color:var(--primary);font-size:1.1rem;flex-shrink:0;margin-top:2px;"></i>
+            <div><strong>Public Transit</strong><p style="font-size:0.88rem;color:var(--text-muted);margin:4px 0 0;">TriMet Bus Line 14 stops 2 blocks away. MAX Light Rail: Goose Hollow Station, 5-min walk.</p></div>
+          </div>
+        </div>
+      </div>
+      <div data-aos="fade-left">
+        <div class="map-wrap">
+          <iframe title="FarmFresh Meats HQ map — Portland, Oregon" src="https://maps.google.com/maps?q=Downtown%20Portland%2C%20Oregon%2097201&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <a href="https://www.google.com/maps/search/?api=1&query=Portland+Oregon+97201" target="_blank" rel="noopener" class="btn btn-primary btn-sm map-link-overlay">Open in Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: QUICK FAQ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header text-center" data-aos="fade-up" style="margin-bottom:48px;">
+      <span class="section-tag">Quick Answers</span>
+      <h2 class="section-title">Common Questions Before You Contact</h2>
+    </div>
+    <div style="max-width:860px;margin:0 auto;" data-aos="fade-up">
+      <div class="faq-item"><div class="faq-question"><span class="faq-q-text">How do I pause or cancel my subscription?</span><i class="fas fa-plus faq-icon"></i></div><div class="faq-answer"><div class="faq-answer-inner">Log into your Subscriber Dashboard and navigate to "Subscription Settings." You can pause, skip, or cancel with immediate effect — no fees, no phone call required. Changes take effect on your next billing cycle.</div></div></div>
+      <div class="faq-item"><div class="faq-question"><span class="faq-q-text">My order didn't arrive. What should I do?</span><i class="fas fa-plus faq-icon"></i></div><div class="faq-answer"><div class="faq-answer-inner">First, check your tracking link in the confirmation email. If the delivery shows as delivered but you can't find it, contact us immediately via phone or live chat. We'll investigate and either reship or issue a full refund within 24 hours.</div></div></div>
+      <div class="faq-item"><div class="faq-question"><span class="faq-q-text">I'm interested in wholesale pricing for my restaurant. Who do I contact?</span><i class="fas fa-plus faq-icon"></i></div><div class="faq-answer"><div class="faq-answer-inner">Email our wholesale team directly at wholesale@farmfreshmeats.com or use the contact form above selecting "Bulk / Wholesale." A dedicated account manager will respond within 4 business hours with pricing and terms.</div></div></div>
+      <div class="faq-item"><div class="faq-question"><span class="faq-q-text">How do I change the cuts in my subscription box?</span><i class="fas fa-plus faq-icon"></i></div><div class="faq-answer"><div class="faq-answer-inner">Log in to your dashboard and visit "Customize My Box." You can change your cuts, quantities, and protein types any time before your weekly cutoff (Wednesday 11:59 PM PT for Friday deliveries).</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: NEWSLETTER -->
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-inner" data-aos="fade-up">
+      <div class="cta-content">
+        <span class="section-tag light">Stay Connected</span>
+        <h2 class="cta-title">Never Miss a Farm Update</h2>
+        <p class="cta-desc">Subscribe to our newsletter for weekly recipes, exclusive deals, and behind-the-scenes farm stories from our 500+ partners.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <input type="email" placeholder="Enter your email" class="cta-email-input" style="padding:14px 20px;border-radius:50px;border:2px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);color:#fff;font-size:0.95rem;min-width:260px;font-family:var(--font-body);" />
+          <button class="btn btn-white">Subscribe Now</button>
+        </div>
+        <p style="font-size:0.8rem;color:rgba(255,255,255,0.6);margin-top:8px;">No spam, ever. Unsubscribe anytime.</p>
+      </div>
+      <div class="cta-image"><img src="https://images.unsplash.com/photo-1500076656116-558758c991c1?w=600&q=80" alt="Farm newsletter" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span>
+        <span class="logo-text">Farm<strong>Fresh</strong> Meats</span>
+      </a>
+      <p>Premium farm-to-door meat delivery. Local. Fresh. Sustainable.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="home2.html">Home 2</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="services.html">Meat Box Subscription</a></li>
+        <li><a href="services.html">Custom Boxes</a></li>
+        <li><a href="services.html">Bulk Orders</a></li>
+        <li><a href="services.html">Doorstep Delivery</a></li>
+        <li><a href="services.html">Corporate Orders</a></li>
+      </ul>
+    </div>
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Get weekly recipes, farm updates and exclusive subscriber deals.</p>
+      <form class="newsletter-form" id="footerNewsletter">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+      <div class="footer-contact-info">
+        <p><i class="fas fa-phone"></i> +1 (800) 555-FARM</p>
+        <p><i class="fas fa-envelope"></i> hello@farmfreshmeats.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Portland, Oregon 97201</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; 2026 FarmFresh Meats. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+<script src="js/main.js"></script>
+<script>
+  // Subject tabs
+  document.querySelectorAll('.subject-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.subject-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

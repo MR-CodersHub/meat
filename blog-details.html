@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Ultimate Guide to Dry-Aging Beef at Home – FarmFresh Meats Blog</title>
+  <meta name="description" content="Learn how to dry-age beef at home with expert tips from our head butcher Marcus Webb. Get restaurant-quality flavor from your FarmFresh cuts." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .bd-layout { display:grid; grid-template-columns:1fr 340px; gap:48px; align-items:start; }
+    .article-body { font-size:1.05rem; line-height:1.9; color:var(--text-muted); }
+    .article-body h2 { font-size:1.7rem; color:var(--text); margin:40px 0 16px; }
+    .article-body h3 { font-size:1.3rem; color:var(--text); margin:32px 0 12px; }
+    .article-body p { margin-bottom:20px; }
+    .article-body ul, .article-body ol { margin:0 0 20px 24px; }
+    .article-body ul li, .article-body ol li { margin-bottom:10px; }
+    .article-body blockquote { border-left:4px solid var(--primary); padding:20px 24px; background:rgba(45,106,79,0.06); border-radius:0 var(--radius-md) var(--radius-md) 0; margin:32px 0; font-style:italic; font-size:1.1rem; color:var(--text); }
+    .article-body blockquote cite { display:block; font-size:0.85rem; color:var(--text-muted); margin-top:10px; font-style:normal; font-weight:600; }
+    .article-body img { border-radius:var(--radius-lg); margin:32px 0; width:100%; height:380px; object-fit:cover; }
+    .article-meta { display:flex; align-items:center; gap:24px; flex-wrap:wrap; padding:20px 0; border-top:2px solid var(--border); border-bottom:2px solid var(--border); margin-bottom:40px; }
+    .article-author-full { display:flex; align-items:center; gap:14px; }
+    .article-author-full img { width:52px; height:52px; border-radius:50%; object-fit:cover; border:3px solid var(--primary-light); }
+    .article-author-full strong { display:block; font-size:0.95rem; }
+    .article-author-full span { font-size:0.82rem; color:var(--text-muted); }
+    .article-info-item { display:flex; align-items:center; gap:6px; font-size:0.85rem; color:var(--text-muted); }
+    .article-info-item i { color:var(--primary); }
+    .share-bar { display:flex; align-items:center; gap:12px; padding:24px; background:var(--bg-alt); border-radius:var(--radius-lg); border:1px solid var(--border); margin-top:40px; flex-wrap:wrap; }
+    .share-bar span { font-weight:600; font-size:0.9rem; }
+    .share-btn { display:flex; align-items:center; gap:8px; padding:10px 18px; border-radius:50px; font-size:0.85rem; font-weight:600; transition:all var(--transition); cursor:pointer; border:none; font-family:var(--font-body); }
+    .share-btn.fb { background:#1877f2; color:#fff; }
+    .share-btn.tw { background:#1da1f2; color:#fff; }
+    .share-btn.ln { background:#0a66c2; color:#fff; }
+    .share-btn.cp { background:var(--bg-alt); color:var(--text); border:1px solid var(--border); }
+    .share-btn:hover { opacity:0.9; transform:translateY(-2px); }
+    .author-bio { background:var(--bg-alt); border-radius:var(--radius-lg); padding:28px; border:1px solid var(--border); display:flex; gap:20px; margin-top:40px; }
+    .author-bio img { width:80px; height:80px; border-radius:50%; object-fit:cover; flex-shrink:0; border:3px solid var(--primary-light); }
+    .author-bio-text h4 { font-size:1.05rem; margin-bottom:4px; }
+    .author-bio-text span { font-size:0.82rem; color:var(--primary); font-weight:600; }
+    .author-bio-text p { font-size:0.9rem; color:var(--text-muted); margin-top:10px; line-height:1.65; }
+    .comment-form { background:var(--surface); border-radius:var(--radius-lg); padding:32px; border:1px solid var(--border); margin-top:40px; }
+    .comment-form h3 { font-size:1.3rem; margin-bottom:24px; }
+    .comments-list { margin-top:40px; }
+    .comment-item { display:flex; gap:16px; margin-bottom:28px; }
+    .comment-item img { width:44px; height:44px; border-radius:50%; object-fit:cover; flex-shrink:0; }
+    .comment-bubble { background:var(--bg-alt); border-radius:0 var(--radius-md) var(--radius-md) var(--radius-md); padding:16px 20px; border:1px solid var(--border); flex:1; }
+    .comment-bubble .comment-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+    .comment-bubble .comment-header strong { font-size:0.9rem; }
+    .comment-bubble .comment-header span { font-size:0.78rem; color:var(--text-muted); }
+    .comment-bubble p { font-size:0.88rem; color:var(--text-muted); margin:0; }
+    .tip-box { background:linear-gradient(135deg,rgba(45,106,79,0.08),rgba(82,183,136,0.06)); border:1px solid rgba(45,106,79,0.2); border-radius:var(--radius-md); padding:24px; margin:32px 0; }
+    .tip-box h4 { color:var(--primary); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+    .tip-box p { font-size:0.92rem; color:var(--text-muted); margin:0; }
+    @media(max-width:1024px) { .bd-layout{grid-template-columns:1fr;} }
+    @media(max-width:480px) { .article-body img{border-radius:var(--radius-sm);} .share-bar{gap:8px;} .share-btn{padding:8px 14px;font-size:0.78rem;} .comments-list{padding:0;} }
+    @media(max-width:360px) { .article-meta{font-size:0.8rem;} }
+  </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="index.html" class="nav-logo"><span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span><span class="logo-text">Farm<strong>Fresh</strong> Meats</span></a>
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="home2.html" class="nav-link">Home 2</a></li>
+      <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+      <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+      <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <div class="profile-menu">
+        <button class="profile-toggle" id="profileToggle" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"><i class="fas fa-circle-user"></i></button>
+        <ul class="profile-dropdown">
+          <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+          <li><a href="dashboard.html"><i class="fas fa-user"></i> User Dashboard</a></li>
+          <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Dashboard</a></li>
+        </ul>
+      </div>
+      <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to right-to-left layout" aria-pressed="false" title="RTL">RTL</button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section class="page-hero" id="postHero" style="background-image:url('https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=1600&q=80');">
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <span class="blog-category" id="postCategory" style="margin-bottom:16px;display:inline-block;">Meat Guide</span>
+    <h1 id="postTitle" style="max-width:800px;">The Ultimate Guide to Dry-Aging Beef at Home</h1>
+    <p id="postExcerpt" style="max-width:600px;">Develop extraordinary flavor in your FarmFresh beef with this complete walkthrough from our head butcher.</p>
+    <div class="hero-ctas">
+      <a href="login.html#register" class="btn btn-primary">Get Fresh Meat Weekly</a>
+      <a href="blog.html" class="btn btn-ghost">Back to Blog</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: ARTICLE -->
+<section class="section" style="padding-bottom:0;">
+  <div class="container">
+    <div class="bd-layout">
+      <!-- Article -->
+      <article>
+        <!-- Meta -->
+        <div class="article-meta">
+          <div class="article-author-full">
+            <img id="postAuthorImg" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Marcus Webb" />
+            <div><strong id="postAuthorName">Marcus Webb</strong><span id="postAuthorRole">Head Butcher, FarmFresh Meats</span></div>
+          </div>
+          <span class="article-info-item" id="postDate"><i class="fas fa-calendar"></i> September 28, 2026</span>
+          <span class="article-info-item" id="postReadTime"><i class="fas fa-clock"></i> 8 min read</span>
+          <span class="article-info-item"><i class="fas fa-eye"></i> 4,812 views</span>
+          <span class="article-info-item"><i class="fas fa-comment"></i> 23 comments</span>
+        </div>
+
+        <!-- Body -->
+        <div class="article-body">
+          <p>Dry-aging is one of the oldest and most effective methods for transforming good beef into extraordinary beef. The process concentrates flavor, tenderizes muscle fibers, and develops that signature nutty, buttery complexity that sets great steakhouses apart. The good news? With the right setup, you can achieve similar results at home using your FarmFresh grass-fed cuts.</p>
+
+          <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=900&q=80" alt="Dry-aged steak with rosemary" loading="lazy" />
+
+          <h2>What Is Dry-Aging?</h2>
+          <p>Dry-aging is a controlled decomposition process. When beef is exposed to cold, circulating air over an extended period (typically 21 to 60+ days), two things happen simultaneously:</p>
+          <ol>
+            <li><strong>Moisture evaporates</strong> — concentrating the beef's natural flavor compounds. A well-aged steak can lose 15–25% of its original weight in moisture.</li>
+            <li><strong>Enzymatic breakdown occurs</strong> — natural enzymes within the muscle tissue break down proteins and connective tissue, resulting in dramatically improved tenderness.</li>
+          </ol>
+          <p>The result is a steak with significantly more intense beefy flavor and a texture so tender it almost melts. For our FarmFresh grass-fed beef — which already has superior flavor compared to conventional beef — dry-aging elevates it to an entirely different level.</p>
+
+          <blockquote>
+            "The best steak I ever ate was a 45-day dry-aged Black Angus ribeye from Willow Creek Farm. Dry-aging doesn't just change the texture — it creates entirely new flavor compounds that simply don't exist in fresh meat."
+            <cite>— Marcus Webb, Head Butcher, FarmFresh Meats</cite>
+          </blockquote>
+
+          <h2>What You Need to Get Started</h2>
+          <p>You don't need professional equipment to dry-age beef at home, but you do need a few essentials to ensure food safety and optimal results:</p>
+          <ul>
+            <li><strong>A dedicated mini-fridge or spare refrigerator</strong> — ideally with a fan for air circulation. Temperature should be maintained between 34–38°F (1–3°C) precisely.</li>
+            <li><strong>A wire rack or butcher's hook</strong> — meat must never rest on a surface. Air must circulate completely around the cut.</li>
+            <li><strong>Cheesecloth</strong> — loosely wrapping the cut prevents surface contamination while allowing moisture to escape.</li>
+            <li><strong>A good meat thermometer</strong> — essential for monitoring internal and ambient temperature.</li>
+          </ul>
+
+          <div class="tip-box">
+            <h4><i class="fas fa-lightbulb"></i> Butcher's Pro Tip</h4>
+            <p>Always start with large, bone-in cuts with a fat cap intact. The fat cap protects the meat surface and renders beautifully during cooking. Our FarmFresh bone-in ribeye roast is ideal — ask us for the "packer-style" cut when customizing your box.</p>
+          </div>
+
+          <h2>The Step-by-Step Process</h2>
+          <h3>Step 1: Choosing the Right Cut (Days 0)</h3>
+          <p>Not all cuts are suitable for dry-aging. Ideal candidates are large, well-marbled cuts with an intact fat cap: bone-in ribeye roast, prime rib, or a whole NY strip loin. Avoid lean cuts — they'll simply dry out without developing the complexity that fat marbling enables.</p>
+
+          <h3>Step 2: Setting Up Your Aging Environment (Day 0)</h3>
+          <p>Configure your mini-fridge at exactly 36°F (2°C). Place a small electric fan inside on its lowest setting to maintain air circulation. Humidity should be between 80–85% — you can use a small bowl of salted water to maintain this if your environment is very dry.</p>
+
+          <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=900&q=80" alt="Premium beef aging" loading="lazy" />
+
+          <h3>Step 3: The Aging Period (Days 1–45)</h3>
+          <p>Place your cut on the wire rack, unwrapped, in the center of the fridge. Loosely drape cheesecloth over it. Check temperature daily for the first week. A thin, dry crust (called the "pellicle") will form on the surface — this is normal and protective.</p>
+          <ul>
+            <li><strong>21 days</strong> — Mild intensification of beef flavor. Slightly more tender. A good starting point for first-timers.</li>
+            <li><strong>30 days</strong> — Noticeably nuttier, more concentrated flavor. The classic steakhouse profile.</li>
+            <li><strong>45 days</strong> — Deep, complex flavors with funky, buttery notes. Not for everyone, but extraordinary for enthusiasts.</li>
+            <li><strong>60+ days</strong> — Intensely concentrated, almost blue-cheese-like. Reserved for dry-aging connoisseurs.</li>
+          </ul>
+
+          <h3>Step 4: Trimming and Cooking (Aging Complete)</h3>
+          <p>When your aging period is complete, remove the outer crust (pellicle) completely. You'll lose roughly 25% of the total weight between moisture loss and trimming — but what remains is pure, concentrated beef gold. Cut into individual steaks, season simply with sea salt and black pepper, and cook using your preferred method. We recommend the reverse-sear technique for maximum control.</p>
+
+          <h2>Food Safety Considerations</h2>
+          <p>Dry-aging is safe when done correctly, but temperature control is non-negotiable. Maintain 34–38°F at all times. Any temperature above 40°F creates a bacterial risk. If at any point you smell a rancid or ammonia-like odor beyond a mild, pleasant earthiness — discard the cut and start fresh. When in doubt, throw it out.</p>
+
+          <div class="tip-box">
+            <h4><i class="fas fa-star"></i> Which FarmFresh Cuts Work Best?</h4>
+            <p>Our grass-fed Black Angus bone-in ribeye roast from Willow Creek Farm is ideal for home dry-aging. The superior marbling from a grass-and-grain-finished diet ensures exceptional results. Add it to your Custom Box and request "unportioned, bone-in" when placing your order.</p>
+          </div>
+        </div>
+
+        <!-- Share Bar -->
+        <div class="share-bar">
+          <span>Share this article:</span>
+          <button class="share-btn fb"><i class="fab fa-facebook-f"></i> Facebook</button>
+          <button class="share-btn tw"><i class="fab fa-twitter"></i> Twitter</button>
+          <button class="share-btn ln"><i class="fab fa-linkedin-in"></i> LinkedIn</button>
+          <button class="share-btn cp" onclick="navigator.clipboard.writeText(window.location.href);FF.showToast('success','Copied!','Link copied to clipboard.')"><i class="fas fa-link"></i> Copy Link</button>
+        </div>
+
+        <!-- Author Bio -->
+        <div class="author-bio">
+          <img id="postBioImg" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Marcus Webb" loading="lazy" />
+          <div class="author-bio-text">
+            <h4 id="postBioName">Marcus Webb</h4>
+            <span id="postBioRole">Head Butcher &amp; Quality Director, FarmFresh Meats</span>
+            <p>Marcus is a 20-year veteran of artisan butchery who has worked in Michelin-starred restaurant kitchens and craft butcher shops across the US and UK. He joined FarmFresh in 2018 and oversees all quality standards, farm partnerships and cut selection.</p>
+          </div>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comments-list">
+          <h3 style="font-size:1.3rem;margin-bottom:24px;">23 Comments</h3>
+          <div class="comment-item">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80" alt="Jennifer K." loading="lazy" />
+            <div class="comment-bubble">
+              <div class="comment-header"><strong>Jennifer K.</strong><span>Sep 29, 2026</span></div>
+              <p>Tried the 30-day method with my last ribeye roast box and it was genuinely life-changing. The flavor concentration was unreal. Thank you Marcus!</p>
+            </div>
+          </div>
+          <div class="comment-item">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80" alt="David" loading="lazy" />
+            <div class="comment-bubble">
+              <div class="comment-header"><strong>David M.</strong><span>Sep 29, 2026</span></div>
+              <p>Question: can I dry-age in a regular refrigerator if I dedicate one shelf to it? Or does it really need to be a separate unit?</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comment Form -->
+        <div class="comment-form">
+          <h3>Leave a Comment</h3>
+          <form data-validate>
+            <div class="stack-480" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div class="form-group"><label class="form-label">Name *</label><input type="text" class="form-control" placeholder="Your full name" required /><span class="form-error">Name is required</span></div>
+              <div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-control" placeholder="your@email.com" required /><span class="form-error">Valid email required</span></div>
+            </div>
+            <div class="form-group"><label class="form-label">Your Comment *</label><textarea class="form-control" rows="5" placeholder="Share your thoughts or questions..." required></textarea><span class="form-error">Comment is required</span></div>
+            <button type="submit" class="btn btn-primary">Post Comment</button>
+          </form>
+        </div>
+      </article>
+
+      <!-- SIDEBAR -->
+      <aside>
+        <!-- Sticky sidebar -->
+        <div style="position:sticky;top:calc(var(--navbar-h)+24px);display:flex;flex-direction:column;gap:24px;">
+          <div class="sd-widget">
+            <h4><i class="fas fa-list" style="color:var(--primary);margin-right:6px;"></i> In This Article</h4>
+            <ul style="display:flex;flex-direction:column;gap:8px;">
+              <li><a href="#" style="font-size:0.88rem;color:var(--text-muted);padding:6px 0;display:block;border-bottom:1px solid var(--border);transition:color var(--transition);" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color=''">What Is Dry-Aging?</a></li>
+              <li><a href="#" style="font-size:0.88rem;color:var(--text-muted);padding:6px 0;display:block;border-bottom:1px solid var(--border);transition:color var(--transition);" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color=''">What You Need</a></li>
+              <li><a href="#" style="font-size:0.88rem;color:var(--text-muted);padding:6px 0;display:block;border-bottom:1px solid var(--border);transition:color var(--transition);" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color=''">Step-by-Step Process</a></li>
+              <li><a href="#" style="font-size:0.88rem;color:var(--text-muted);padding:6px 0;display:block;border-bottom:1px solid var(--border);transition:color var(--transition);" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color=''">Food Safety</a></li>
+              <li><a href="#" style="font-size:0.88rem;color:var(--text-muted);padding:6px 0;display:block;transition:color var(--transition);" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color=''">Best Cuts to Use</a></li>
+            </ul>
+          </div>
+          <div class="sd-widget" style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;border:none;">
+            <h4 style="color:#fff;border-bottom-color:rgba(255,255,255,0.2);"><i class="fas fa-drumstick-bite" style="margin-right:8px;"></i>Try Our Ribeye Box</h4>
+            <p style="font-size:0.88rem;color:rgba(255,255,255,0.85);margin-bottom:16px;">Get bone-in ribeye roast — perfect for home dry-aging — in your next Custom Box.</p>
+            <a href="login.html#register" class="btn btn-white btn-sm" style="width:100%;justify-content:center;">Build My Box</a>
+          </div>
+          <div class="sd-widget">
+            <h4><i class="fas fa-newspaper" style="color:var(--primary);margin-right:6px;"></i> Related Articles</h4>
+            <div class="recent-post" style="padding:12px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;">
+              <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=80&q=80" alt="" loading="lazy" style="width:56px;height:56px;border-radius:var(--radius-sm);object-fit:cover;flex-shrink:0;" />
+              <div><a href="blog-details.html" style="font-size:0.85rem;font-weight:600;color:var(--text);transition:color var(--transition);" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color=''">How to Cook the Perfect Ribeye</a><p style="font-size:0.78rem;color:var(--text-muted);margin:3px 0 0;">5 min read</p></div>
+            </div>
+            <div class="recent-post" style="padding:12px 0;display:flex;gap:10px;">
+              <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=80&q=80" alt="" loading="lazy" style="width:56px;height:56px;border-radius:var(--radius-sm);object-fit:cover;flex-shrink:0;" />
+              <div><a href="blog-details.html" style="font-size:0.85rem;font-weight:600;color:var(--text);transition:color var(--transition);" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color=''">Heritage Pork 101: Breeds &amp; Cuts</a><p style="font-size:0.78rem;color:var(--text-muted);margin:3px 0 0;">6 min read</p></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: RELATED POSTS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up" style="margin-bottom:40px;"><span class="section-tag">Keep Reading</span><h2 class="section-title">You Might Also Enjoy</h2></div>
+    <div class="stack-768" style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;" data-aos="fade-up">
+      <div class="blog-card"><div class="blog-card-img"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&q=80" alt="Ribeye" loading="lazy" /></div><div class="blog-card-body"><div class="blog-meta"><span class="blog-category">Recipe</span><span class="blog-date"><i class="fas fa-calendar"></i> Sep 25</span></div><h3><a href="blog-details.html">How to Cook the Perfect Ribeye</a></h3><p>Cast iron, butter-basting, and the reverse-sear — all explained.</p><div class="blog-footer"><a href="blog-details.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a></div></div></div>
+      <div class="blog-card"><div class="blog-card-img"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80" alt="Nutrition" loading="lazy" /></div><div class="blog-card-body"><div class="blog-meta"><span class="blog-category" style="background:rgba(41,128,185,0.1);color:#2980b9;">Nutrition</span><span class="blog-date"><i class="fas fa-calendar"></i> Sep 15</span></div><h3><a href="blog-details.html">Grass-Fed vs. Grain-Fed Science</a></h3><p>Peer-reviewed research on omega-3s, CLA and vitamins in grass-fed beef.</p><div class="blog-footer"><a href="blog-details.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a></div></div></div>
+      <div class="blog-card"><div class="blog-card-img"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=500&q=80" alt="Farm" loading="lazy" /></div><div class="blog-card-body"><div class="blog-meta"><span class="blog-category" style="background:rgba(212,160,23,0.1);color:var(--accent);">Farm Story</span><span class="blog-date"><i class="fas fa-calendar"></i> Sep 20</span></div><h3><a href="blog-details.html">Meet the Hansen Family Farm</a></h3><p>40 years of regenerative farming in Tillamook County, Oregon.</p><div class="blog-footer"><a href="blog-details.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4–6: Newsletter + Topics + CTA reuse same footer pattern -->
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-inner" data-aos="fade-up">
+      <div class="cta-content">
+        <span class="section-tag light">Ready to Try?</span>
+        <h2 class="cta-title">Get Your Dry-Aging Ribeye Box</h2>
+        <p class="cta-desc">Add a bone-in ribeye roast to your Custom Box and follow this guide for a dry-aging experience you'll never forget.</p>
+        <div class="cta-features"><span><i class="fas fa-check"></i> 25% off first box</span><span><i class="fas fa-check"></i> Custom cut options</span><span><i class="fas fa-check"></i> Free insulated delivery</span></div>
+        <div class="cta-actions"><a href="login.html#register" class="btn btn-white btn-lg">Build My Custom Box</a><a href="services.html" class="btn btn-outline-white btn-lg">View All Plans</a></div>
+      </div>
+      <div class="cta-image"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="Premium beef box" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span>
+        <span class="logo-text">Farm<strong>Fresh</strong> Meats</span>
+      </a>
+      <p>Premium farm-to-door meat delivery. Local. Fresh. Sustainable.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="home2.html">Home 2</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="services.html">Meat Box Subscription</a></li>
+        <li><a href="services.html">Custom Boxes</a></li>
+        <li><a href="services.html">Bulk Orders</a></li>
+        <li><a href="services.html">Doorstep Delivery</a></li>
+        <li><a href="services.html">Corporate Orders</a></li>
+      </ul>
+    </div>
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Get weekly recipes, farm updates and exclusive subscriber deals.</p>
+      <form class="newsletter-form" id="footerNewsletter">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+      <div class="footer-contact-info">
+        <p><i class="fas fa-phone"></i> +1 (800) 555-FARM</p>
+        <p><i class="fas fa-envelope"></i> hello@farmfreshmeats.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Portland, Oregon 97201</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; 2026 FarmFresh Meats. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+<script src="js/main.js"></script>
+<script>
+  // Show the clicked blog card's image + details dynamically
+  (function () {
+    var POSTS = {
+      'dry-aging': {
+        img: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=1600&q=80',
+        category: 'Meat Guide',
+        title: 'The Ultimate Guide to Dry-Aging Beef at Home',
+        excerpt: 'Develop extraordinary flavor in your FarmFresh beef with this complete walkthrough from our head butcher.',
+        date: 'September 28, 2026',
+        readTime: '8 min read',
+        author: 'Marcus Webb',
+        role: 'Head Butcher, FarmFresh Meats',
+        bioRole: 'Head Butcher & Quality Director, FarmFresh Meats',
+        authorImg: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80'
+      },
+      'ribeye': {
+        img: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1600&q=80',
+        category: 'Recipe',
+        title: 'How to Cook the Perfect Ribeye: A 5-Step Method',
+        excerpt: 'Cast iron, butter basting, and the reverse sear technique — restaurant-quality steak at home.',
+        date: 'September 25, 2026',
+        readTime: '6 min read',
+        author: 'Chef Anna K.',
+        role: 'Executive Chef, FarmFresh Meats',
+        bioRole: 'Executive Chef & Recipe Developer, FarmFresh Meats',
+        authorImg: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80'
+      },
+      'hansen': {
+        img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80',
+        category: 'Farm Story',
+        title: 'Meet the Hansen Family: 40 Years of Regenerative Farming',
+        excerpt: 'Three generations farming 800 acres with traditional, sustainable practices that restore the land.',
+        date: 'September 20, 2026',
+        readTime: '5 min read',
+        author: 'Tom Hansen',
+        role: 'Co-Founder & CEO, FarmFresh Meats',
+        bioRole: 'Co-Founder & CEO, FarmFresh Meats',
+        authorImg: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80'
+      },
+      'grassfed': {
+        img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&q=80',
+        category: 'Nutrition',
+        title: 'Grass-Fed vs. Grain-Fed: The Science Behind the Difference',
+        excerpt: 'Omega-3 ratios, CLA content, vitamins — peer-reviewed research on why feed matters for your health.',
+        date: 'September 15, 2026',
+        readTime: '7 min read',
+        author: 'Dr. Priya S., RD',
+        role: 'Registered Dietitian & Nutrition Advisor',
+        bioRole: 'Registered Dietitian & Nutrition Advisor, FarmFresh Meats',
+        authorImg: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80'
+      },
+      'pork': {
+        img: 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=1600&q=80',
+        category: 'Meat Guide',
+        title: 'Heritage Pork 101: Breeds, Cuts, and Why It Tastes Different',
+        excerpt: 'Berkshire, Duroc, Tamworth — what makes heritage breeds special and how to cook each cut.',
+        date: 'September 10, 2026',
+        readTime: '6 min read',
+        author: 'Marcus Webb',
+        role: 'Head Butcher, FarmFresh Meats',
+        bioRole: 'Head Butcher & Quality Director, FarmFresh Meats',
+        authorImg: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80'
+      },
+      'lamb': {
+        img: 'https://images.unsplash.com/photo-1604908177453-7462950a6a3b?w=1600&q=80',
+        category: 'Recipe',
+        title: 'Herb-Crusted Rack of Lamb with Dijon and Fresh Rosemary',
+        excerpt: 'A showstopping centerpiece — farm-fresh rack of lamb with a classic French herb crust.',
+        date: 'September 5, 2026',
+        readTime: '5 min read',
+        author: 'Chef Anna K.',
+        role: 'Executive Chef, FarmFresh Meats',
+        bioRole: 'Executive Chef & Recipe Developer, FarmFresh Meats',
+        authorImg: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80'
+      },
+      'regenerative': {
+        img: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1600&q=80',
+        category: 'Farm Story',
+        title: 'How Regenerative Ranching Helps Fight Climate Change',
+        excerpt: 'Our partner farms actively restore ecosystems — how rotational grazing sequesters carbon.',
+        date: 'September 1, 2026',
+        readTime: '4 min read',
+        author: 'Priya Sharma',
+        role: 'Farm Partnerships, FarmFresh Meats',
+        bioRole: 'Farm Partnership Director, FarmFresh Meats',
+        authorImg: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80'
+      }
+    };
+    var id = new URLSearchParams(window.location.search).get('post');
+    var post = POSTS[id] || POSTS['dry-aging'];
+    function setText(elId, text) {
+      var el = document.getElementById(elId);
+      if (el && text) el.textContent = text;
+    }
+    function setImg(elId, src, alt) {
+      var el = document.getElementById(elId);
+      if (el && src) { el.src = src; if (alt) el.alt = alt; }
+    }
+    var hero = document.getElementById('postHero');
+    if (hero) hero.style.backgroundImage = "url('" + post.img + "')";
+    setText('postCategory', post.category);
+    setText('postTitle', post.title);
+    setText('postExcerpt', post.excerpt);
+    setText('postAuthorName', post.author);
+    setText('postAuthorRole', post.role);
+    setText('postBioName', post.author);
+    setText('postBioRole', post.bioRole);
+    setImg('postAuthorImg', post.authorImg, post.author);
+    setImg('postBioImg', post.authorImg, post.author);
+    var dateEl = document.getElementById('postDate');
+    if (dateEl) dateEl.innerHTML = '<i class="fas fa-calendar"></i> ' + post.date;
+    var readEl = document.getElementById('postReadTime');
+    if (readEl) readEl.innerHTML = '<i class="fas fa-clock"></i> ' + post.readTime;
+    document.title = post.title + ' – FarmFresh Meats';
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login & Register – FarmFresh Meats</title>
+  <meta name="description" content="Sign in to your FarmFresh subscription account or create a new account to get started with premium farm-fresh meat delivery." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .auth-page { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; }
+    .auth-hero { background:linear-gradient(160deg,#0d2b1e 0%,var(--primary-dark) 50%,var(--primary) 100%); display:flex; flex-direction:column; justify-content:center; align-items:center; padding:60px 48px; position:relative; overflow:hidden; }
+    .auth-hero::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=1000&q=60') center/cover; opacity:0.15; }
+    .auth-hero-content { position:relative; z-index:1; color:#fff; max-width:420px; }
+    .auth-hero-content .nav-logo { color:#fff; margin-bottom:40px; display:flex; }
+    .auth-hero-content .nav-logo .logo-icon { background:rgba(255,255,255,0.2); }
+    .auth-hero-content h2 { font-size:2.2rem; color:#fff; margin-bottom:16px; }
+    .auth-hero-content p { color:rgba(255,255,255,0.88); font-size:1rem; line-height:1.7; margin-bottom:40px; }
+    .auth-trust { display:flex; flex-direction:column; gap:14px; }
+    .auth-trust-item { display:flex; align-items:center; gap:12px; color:rgba(255,255,255,0.9); font-size:0.92rem; }
+    .auth-trust-item i { width:36px; height:36px; background:rgba(255,255,255,0.15); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .auth-testimonial { margin-top:40px; padding:24px; background:rgba(255,255,255,0.1); border-radius:var(--radius-lg); border:1px solid rgba(255,255,255,0.15); }
+    .auth-testimonial p { font-size:0.92rem; color:rgba(255,255,255,0.9); font-style:italic; margin-bottom:12px; }
+    .auth-testimonial-author { display:flex; align-items:center; gap:10px; }
+    .auth-testimonial-author img { width:36px; height:36px; border-radius:50%; border:2px solid rgba(255,255,255,0.3); }
+    .auth-testimonial-author span { font-size:0.82rem; color:rgba(255,255,255,0.85); }
+    /* Form panel */
+    .auth-form-panel { background:var(--surface); display:flex; flex-direction:column; justify-content:center; align-items:center; padding:60px 48px; overflow-y:auto; }
+    .auth-form-wrap { width:100%; max-width:420px; }
+    .auth-tabs { display:flex; background:var(--bg-alt); border-radius:50px; padding:4px; margin-bottom:36px; }
+    .auth-tab { flex:1; padding:12px; text-align:center; border-radius:50px; font-size:0.9rem; font-weight:600; cursor:pointer; transition:all var(--transition); color:var(--text-muted); border:none; background:none; font-family:var(--font-body); }
+    .auth-tab.active { background:var(--surface); color:var(--text); box-shadow:var(--shadow-sm); }
+    .auth-form { animation:fadeUp 0.3s ease; }
+    .divider { display:flex; align-items:center; gap:12px; margin:24px 0; }
+    .divider::before, .divider::after { content:''; flex:1; height:1px; background:var(--border); }
+    .divider span { font-size:0.82rem; color:var(--text-muted); white-space:nowrap; }
+    .social-auth { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .social-btn { display:flex; align-items:center; justify-content:center; gap:8px; padding:12px; border-radius:var(--radius-md); border:2px solid var(--border); font-size:0.88rem; font-weight:600; cursor:pointer; transition:all var(--transition); font-family:var(--font-body); color:var(--text); background:var(--surface); }
+    .social-btn:hover { border-color:var(--primary); background:rgba(45,106,79,0.04); }
+    .password-strength { height:4px; border-radius:2px; background:var(--border); margin-top:6px; overflow:hidden; }
+    .strength-bar { height:100%; border-radius:2px; transition:width 0.3s ease, background 0.3s ease; width:0%; }
+    .plan-selector { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:20px; }
+    .plan-option { border:2px solid var(--border); border-radius:var(--radius-md); padding:12px 8px; text-align:center; cursor:pointer; transition:all var(--transition); }
+    .plan-option:hover, .plan-option.selected { border-color:var(--primary); background:rgba(45,106,79,0.04); }
+    .plan-option input { display:none; }
+    .plan-option .plan-name { font-size:0.82rem; font-weight:700; display:block; margin-bottom:2px; }
+    .plan-option .plan-price { font-size:0.9rem; font-weight:800; font-family:var(--font-head); color:var(--primary); }
+    [data-theme="dark"] .plan-price { color:#7dd3a5; }
+    [data-theme="dark"] .plan-option:hover, [data-theme="dark"] .plan-option.selected { border-color:#7dd3a5; background:rgba(125,211,165,0.08); }
+    [data-theme="dark"] .social-btn:hover { border-color:#7dd3a5; background:rgba(125,211,165,0.08); }
+    [data-theme="dark"] .social-btn .fa-facebook-f { color:#7fb8e6; }
+    @media(max-width:900px) { .auth-page{grid-template-columns:1fr;} .auth-hero{display:none;} .auth-form-panel{padding:40px 24px;} }
+    @media(max-width:360px) { .auth-form-panel{padding:32px 16px;} .auth-form-wrap{max-width:100%;} .social-auth{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body style="padding-top:0;">
+
+<div class="auth-page">
+  <!-- HERO SIDE -->
+  <div class="auth-hero">
+    <div class="auth-hero-content">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span>
+        <span class="logo-text" style="color:#fff;">Farm<strong>Fresh</strong> Meats</span>
+      </a>
+      <h2>Premium Meat, Delivered Weekly</h2>
+      <p>Join 12,000+ families who get locally sourced, humanely raised, chef-selected cuts delivered every week. Start with 25% off your first box.</p>
+      <div class="auth-trust">
+        <div class="auth-trust-item"><i class="fas fa-award"></i> USDA Certified Organic &amp; Humane Raised</div>
+        <div class="auth-trust-item"><i class="fas fa-leaf"></i> 500+ Verified Local Farm Partners</div>
+        <div class="auth-trust-item"><i class="fas fa-truck"></i> Free Insulated Delivery — Every Order</div>
+        <div class="auth-trust-item"><i class="fas fa-undo"></i> Skip or Cancel Anytime — No Contracts</div>
+      </div>
+      <div class="auth-testimonial">
+        <p>"FarmFresh completely changed how our family eats. The quality is extraordinary and the convenience is unmatched."</p>
+        <div class="auth-testimonial-author">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80" alt="Jennifer K." />
+          <span><strong style="color:#fff;">Jennifer K.</strong> · Family Box Subscriber, 14 months</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM SIDE -->
+  <div class="auth-form-panel">
+    <div class="auth-form-wrap">
+      <!-- Tabs -->
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="loginTab" role="tab" aria-selected="true">Sign In</button>
+        <button class="auth-tab" id="registerTab" role="tab" aria-selected="false">Create Account</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="loginForm" class="auth-form">
+        <div style="margin-bottom:28px;"><h3 style="font-size:1.5rem;margin-bottom:6px;">Welcome back!</h3><p style="font-size:0.9rem;color:var(--text-muted);">Sign in to manage your FarmFresh subscription.</p></div>
+
+        <!-- Social Auth -->
+        <div class="social-auth">
+          <button type="button" class="social-btn" onclick="window.location.href='index.html';"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18" alt="Google" /> Google</button>
+          <button type="button" class="social-btn" onclick="window.location.href='index.html';"><i class="fab fa-facebook-f" style="color:#1877f2;"></i> Facebook</button>
+        </div>
+
+        <div class="divider"><span>or sign in with email</span></div>
+
+        <form data-validate id="loginFormEl">
+          <div class="form-group">
+            <label class="form-label" for="login-email">Email Address</label>
+            <div style="position:relative;">
+              <input type="email" id="login-email" class="form-control" placeholder="you@example.com" required style="padding-left:42px;" />
+              <i class="fas fa-envelope" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:0.9rem;pointer-events:none;"></i>
+            </div>
+            <span class="form-error">Valid email required</span>
+          </div>
+          <div class="form-group">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><label class="form-label" for="login-pass" style="margin:0;">Password</label><a href="#" style="font-size:0.82rem;color:var(--primary);">Forgot password?</a></div>
+            <div style="position:relative;">
+              <input type="password" id="login-pass" class="form-control" placeholder="••••••••" required style="padding-left:42px;padding-right:42px;" />
+              <i class="fas fa-lock" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:0.9rem;pointer-events:none;"></i>
+              <button type="button" id="toggleLoginPass" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);"><i class="fas fa-eye"></i></button>
+            </div>
+            <span class="form-error">Password required</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+            <input type="checkbox" id="remember" style="width:16px;height:16px;accent-color:var(--primary);" />
+            <label for="remember" style="font-size:0.85rem;color:var(--text-muted);">Keep me signed in for 30 days</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;" onclick="window.location.href='index.html'; return false;">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+          </button>
+        </form>
+        <p style="text-align:center;margin-top:24px;font-size:0.85rem;color:var(--text-muted);">Don't have an account? <a href="#" id="goToRegister" style="color:var(--primary);font-weight:600;">Create one free →</a></p>
+        <p style="text-align:center;margin-top:12px;font-size:0.8rem;color:var(--text-muted);"><a href="admin.html" style="color:var(--text-muted);">Admin Portal →</a></p>
+      </div>
+
+      <!-- REGISTER FORM -->
+      <div id="registerForm" class="auth-form" style="display:none;">
+        <div style="margin-bottom:24px;"><h3 style="font-size:1.4rem;margin-bottom:6px;">Start Your Subscription</h3><p style="font-size:0.88rem;color:var(--text-muted);">25% off your first box. Cancel anytime. Free delivery.</p></div>
+
+        <!-- Plan Selection -->
+        <div class="form-group">
+          <label class="form-label">Choose Your Plan</label>
+          <div class="plan-selector">
+            <label class="plan-option" onclick="document.querySelectorAll('.plan-option').forEach(p=>p.classList.remove('selected'));this.classList.add('selected')">
+              <input type="radio" name="plan" value="classic" /><span class="plan-name">Classic</span><span class="plan-price">$79</span><span style="font-size:0.7rem;color:var(--text-muted);">per box</span>
+            </label>
+            <label class="plan-option selected" onclick="document.querySelectorAll('.plan-option').forEach(p=>p.classList.remove('selected'));this.classList.add('selected')">
+              <input type="radio" name="plan" value="family" checked /><span class="plan-name">Family <i class="fas fa-star" style="font-size:0.65rem;"></i></span><span class="plan-price">$129</span><span style="font-size:0.7rem;color:var(--text-muted);">per box</span>
+            </label>
+            <label class="plan-option" onclick="document.querySelectorAll('.plan-option').forEach(p=>p.classList.remove('selected'));this.classList.add('selected')">
+              <input type="radio" name="plan" value="custom" /><span class="plan-name">Custom</span><span class="plan-price">$179</span><span style="font-size:0.7rem;color:var(--text-muted);">per box</span>
+            </label>
+          </div>
+        </div>
+
+        <form data-validate id="registerFormEl">
+          <div class="stack-480" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group">
+              <label class="form-label" for="reg-fname">First Name *</label>
+              <input type="text" id="reg-fname" class="form-control" placeholder="Jane" required />
+              <span class="form-error">Required</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-lname">Last Name *</label>
+              <input type="text" id="reg-lname" class="form-control" placeholder="Smith" required />
+              <span class="form-error">Required</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-email">Email Address *</label>
+            <div style="position:relative;">
+              <input type="email" id="reg-email" class="form-control" placeholder="you@example.com" required style="padding-left:42px;" />
+              <i class="fas fa-envelope" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:0.9rem;pointer-events:none;"></i>
+            </div>
+            <span class="form-error">Valid email required</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-zip">Delivery ZIP Code *</label>
+            <div style="position:relative;">
+              <input type="text" id="reg-zip" class="form-control" placeholder="97201" maxlength="5" required style="padding-left:42px;" oninput="this.value=this.value.replace(/\D/g,'')" />
+              <i class="fas fa-map-marker-alt" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:0.9rem;pointer-events:none;"></i>
+            </div>
+            <span class="form-error">ZIP code required</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-pass">Password *</label>
+            <div style="position:relative;">
+              <input type="password" id="reg-pass" class="form-control" placeholder="Min. 8 characters" required style="padding-left:42px;padding-right:42px;" minlength="8" oninput="updateStrength(this.value)" />
+              <i class="fas fa-lock" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:0.9rem;pointer-events:none;"></i>
+              <button type="button" id="toggleRegPass" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);"><i class="fas fa-eye"></i></button>
+            </div>
+            <div class="password-strength"><div class="strength-bar" id="strengthBar"></div></div>
+            <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;" id="strengthLabel">Enter a password</p>
+            <span class="form-error">Password must be at least 8 characters</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:20px;">
+            <input type="checkbox" id="reg-terms" required style="width:16px;height:16px;accent-color:var(--primary);margin-top:2px;flex-shrink:0;" />
+            <label for="reg-terms" style="font-size:0.82rem;color:var(--text-muted);">I agree to the <a href="#" style="color:var(--primary);">Terms of Service</a> and <a href="#" style="color:var(--primary);">Privacy Policy</a>. I understand my subscription auto-renews weekly.</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;" onclick="window.location.href='index.html'; return false;">
+            <i class="fas fa-gift"></i> Create Account &amp; Claim 25% Off
+          </button>
+        </form>
+        <p style="text-align:center;margin-top:16px;font-size:0.85rem;color:var(--text-muted);">Already have an account? <a href="#" id="goToLogin" style="color:var(--primary);font-weight:600;">Sign in →</a></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div style="position:fixed;top:20px;right:20px;display:flex;gap:10px;z-index:100;">
+  <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to right-to-left layout" aria-pressed="false" title="RTL" style="background:var(--surface);color:var(--text);border:1px solid var(--border);">RTL</button>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" style="background:var(--surface);color:var(--text);backdrop-filter:blur(10px);border:1px solid var(--border);"><i class="fas fa-moon" id="themeIcon"></i></button>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+  // Tab switching
+  const loginTab = document.getElementById('loginTab');
+  const registerTab = document.getElementById('registerTab');
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+
+  function showLogin() {
+    loginTab.classList.add('active');
+    registerTab.classList.remove('active');
+    loginForm.style.display = '';
+    registerForm.style.display = 'none';
+  }
+  function showRegister() {
+    registerTab.classList.add('active');
+    loginTab.classList.remove('active');
+    registerForm.style.display = '';
+    loginForm.style.display = 'none';
+  }
+
+  loginTab.addEventListener('click', showLogin);
+  registerTab.addEventListener('click', showRegister);
+  document.getElementById('goToRegister').addEventListener('click', e => { e.preventDefault(); showRegister(); });
+  document.getElementById('goToLogin').addEventListener('click', e => { e.preventDefault(); showLogin(); });
+
+  // Check URL hash
+  if (window.location.hash === '#register') showRegister();
+
+  // Password visibility toggles
+  function setupPasswordToggle(btnId, inputId) {
+    document.getElementById(btnId)?.addEventListener('click', () => {
+      const input = document.getElementById(inputId);
+      const icon = document.querySelector('#' + btnId + ' i');
+      if (input.type === 'password') { input.type = 'text'; icon.classList.replace('fa-eye', 'fa-eye-slash'); }
+      else { input.type = 'password'; icon.classList.replace('fa-eye-slash', 'fa-eye'); }
+    });
+  }
+  setupPasswordToggle('toggleLoginPass', 'login-pass');
+  setupPasswordToggle('toggleRegPass', 'reg-pass');
+
+  // Re-evaluate strength colors if theme is toggled after typing
+  document.getElementById('themeToggle')?.addEventListener('click', () => {
+    setTimeout(() => updateStrength(document.getElementById('reg-pass').value || ''), 60);
+  });
+
+  // Password strength
+  function updateStrength(val) {
+    const bar = document.getElementById('strengthBar');
+    const label = document.getElementById('strengthLabel');
+    let score = 0;
+    if (val.length >= 8) score++;
+    if (/[A-Z]/.test(val)) score++;
+    if (/[0-9]/.test(val)) score++;
+    if (/[^A-Za-z0-9]/.test(val)) score++;
+    const darkTheme = document.documentElement.getAttribute('data-theme') === 'dark';
+    const colors = darkTheme ? ['', '#ff9d8a', '#f5b26b', '#f7dc6f', '#7dd3a5'] : ['', '#c0392b', '#b45309', '#7d6608', '#1e7a46'];
+    const widths = ['0%', '25%', '50%', '75%', '100%'];
+    const labels = ['', 'Very weak', 'Weak', 'Good', 'Strong'];
+    bar.style.width = widths[score];
+    bar.style.background = colors[score];
+    label.textContent = labels[score] || 'Enter a password';
+    label.style.color = colors[score] || 'var(--text-muted)';
+  }
+</script>
+</body>
+</html>

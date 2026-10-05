@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services – FarmFresh Meats | Meat Box Subscriptions & Delivery</title>
+  <meta name="description" content="Explore all FarmFresh Meats services: weekly meat box subscriptions, custom boxes, bulk orders, doorstep delivery, and corporate catering." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .services-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch; }
+    .service-card { background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-sm);transition:all var(--transition);display:flex;flex-direction:column;height:100%; }
+    .service-card:hover { transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:var(--primary); }
+    .service-img { height:240px;overflow:hidden;position:relative; }
+    .service-img img { width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease; }
+    .service-card:hover .service-img img { transform:scale(1.06); }
+    .service-tag { position:absolute;top:16px;left:16px;background:var(--primary);color:#fff;font-size:0.75rem;font-weight:700;padding:5px 14px;border-radius:50px; }
+    .service-body { padding:28px;display:flex;flex-direction:column;flex:1; }
+    .service-icon { width:52px;height:52px;border-radius:var(--radius-sm);background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;margin-bottom:16px; }
+    .service-body h3 { font-size:1.2rem;margin-bottom:10px; }
+    .service-body p { font-size:0.9rem;color:var(--text-muted);line-height:1.65;margin-bottom:16px; }
+    .service-body ul { margin-bottom:20px; }
+    .service-body ul li { font-size:0.88rem;color:var(--text-muted);padding:5px 0;display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--border); }
+    .service-body ul li:last-child { border-bottom:none; }
+    .service-body ul li i { color:var(--primary);font-size:0.8rem;flex-shrink:0; }
+    .service-footer { display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--border);margin-top:auto; }
+    .service-price { font-family:var(--font-head);font-size:1.2rem;font-weight:700;color:var(--primary); }
+    .pricing-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:28px; }
+    .pricing-card { background:var(--surface);border-radius:var(--radius-xl);padding:40px 32px;border:2px solid var(--border);text-align:center;transition:all var(--transition);position:relative;overflow:hidden; }
+    .pricing-card.popular { border-color:var(--primary);box-shadow:0 20px 60px rgba(45,106,79,0.15); }
+    .pricing-card.popular::before { content:'Most Popular';position:absolute;top:20px;right:-30px;background:var(--accent);color:#221a00;font-size:0.75rem;font-weight:700;padding:5px 40px;transform:rotate(45deg);letter-spacing:0.05em; }
+    .pricing-card:hover:not(.popular) { border-color:var(--primary-light);transform:translateY(-4px);box-shadow:var(--shadow-md); }
+    .pricing-plan { font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:8px; }
+    .pricing-title { font-size:1.5rem;font-weight:700;margin-bottom:8px; }
+    .pricing-price { font-size:3rem;font-weight:800;font-family:var(--font-head);color:var(--primary);line-height:1; }
+    .pricing-period { font-size:0.85rem;color:var(--text-muted); }
+    .pricing-desc { font-size:0.88rem;color:var(--text-muted);margin:12px 0 24px;line-height:1.6; }
+    .pricing-features { list-style:none;text-align:left;margin-bottom:32px; }
+    .pricing-features li { padding:10px 0;border-bottom:1px solid var(--border);font-size:0.9rem;display:flex;gap:10px;align-items:center; }
+    .pricing-features li:last-child { border-bottom:none; }
+    .pricing-features i.fa-check { color:var(--primary); }
+    .pricing-features i.fa-times { color:var(--text-light); }
+    @media(max-width:1024px){ .services-grid{grid-template-columns:repeat(2,1fr);} .pricing-grid{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:768px){ .services-grid{grid-template-columns:1fr;} .pricing-grid{grid-template-columns:1fr;} }
+    @media(max-width:480px){ .service-body{padding:22px 20px;} .service-footer{flex-wrap:wrap;} .pricing-card{padding:32px 22px;} }
+    @media(max-width:360px){ .service-footer .btn{width:100%;justify-content:center;} }
+  </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="index.html" class="nav-logo"><span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span><span class="logo-text">Farm<strong>Fresh</strong> Meats</span></a>
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="home2.html" class="nav-link">Home 2</a></li>
+      <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+      <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
+      <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <div class="profile-menu">
+        <button class="profile-toggle" id="profileToggle" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"><i class="fas fa-circle-user"></i></button>
+        <ul class="profile-dropdown">
+          <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+          <li><a href="dashboard.html"><i class="fas fa-user"></i> User Dashboard</a></li>
+          <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin Dashboard</a></li>
+        </ul>
+      </div>
+      <button class="rtl-toggle" id="rtlToggle" aria-label="Switch to right-to-left layout" aria-pressed="false" title="RTL">RTL</button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=1600&q=80');">
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <h1>Our Premium Services</h1>
+    <p>From curated weekly boxes to custom bulk orders — discover the service that fits your lifestyle and table.</p>
+    <div class="hero-ctas">
+      <a href="login.html#register" class="btn btn-primary">Build Your Box</a>
+      <a href="contact.html" class="btn btn-ghost">Talk to Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: ALL SERVICES -->
+<section class="section">
+  <div class="container">
+    <div class="section-header text-center" data-aos="fade-up" style="margin-bottom:56px;">
+      <span class="section-tag">What We Offer</span>
+      <h2 class="section-title">Farm-to-Door Services</h2>
+      <p class="section-desc">Every service is built on our core promise: local, honest, premium quality meat — delivered to your door.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-aos="fade-up">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=600&q=80" alt="Meat Box Subscription" loading="lazy" />
+          <span class="service-tag">Most Popular</span>
+        </div>
+        <div class="service-body">
+          <div class="service-icon"><i class="fas fa-box-open"></i></div>
+          <h3>Meat Box Subscription</h3>
+          <p>Our flagship service. A curated selection of premium cuts delivered weekly, bi-weekly or monthly. Choose from beef, pork, poultry, lamb or a mix.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> 5–8 premium cuts per box</li>
+            <li><i class="fas fa-check"></i> Recipe cards included</li>
+            <li><i class="fas fa-check"></i> Skip or pause anytime</li>
+            <li><i class="fas fa-check"></i> Free insulated delivery</li>
+          </ul>
+          <div class="service-footer">
+            <span class="service-price">From $79/box</span>
+            <a href="service-details.html" class="btn btn-primary btn-sm">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=600&q=80" alt="Doorstep Delivery" loading="lazy" />
+        </div>
+        <div class="service-body">
+          <div class="service-icon"><i class="fas fa-truck"></i></div>
+          <h3>Doorstep Delivery</h3>
+          <p>Premium insulated delivery with temperature-controlled packaging. Your meat arrives perfectly chilled, ready to refrigerate or freeze.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> Real-time order tracking</li>
+            <li><i class="fas fa-check"></i> Eco-friendly wool-lined boxes</li>
+            <li><i class="fas fa-check"></i> Contactless delivery option</li>
+            <li><i class="fas fa-check"></i> Choose your delivery day</li>
+          </ul>
+          <div class="service-footer">
+            <span class="service-price">Free on all orders</span>
+            <a href="service-details.html" class="btn btn-primary btn-sm">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Custom Box Builder" loading="lazy" />
+        </div>
+        <div class="service-body">
+          <div class="service-icon"><i class="fas fa-sliders-h"></i></div>
+          <h3>Custom Box Builder</h3>
+          <p>Complete control over every cut. Choose exactly what goes in your box — specific weights, preferred cuts, and your own quantities.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> 50+ cuts to choose from</li>
+            <li><i class="fas fa-check"></i> Specify exact weights (oz/lbs)</li>
+            <li><i class="fas fa-check"></i> Mix proteins freely</li>
+            <li><i class="fas fa-check"></i> Save your custom profile</li>
+          </ul>
+          <div class="service-footer">
+            <span class="service-price">From $89/box</span>
+            <a href="service-details.html" class="btn btn-primary btn-sm">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=600&q=80" alt="Bulk Orders" loading="lazy" />
+        </div>
+        <div class="service-body">
+          <div class="service-icon"><i class="fas fa-boxes"></i></div>
+          <h3>Bulk Orders</h3>
+          <p>For restaurants, gyms, meal prep companies and large families. Order in bulk and receive significant volume discounts with priority fulfillment.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> 50–500 lbs per order</li>
+            <li><i class="fas fa-check"></i> Up to 35% discount</li>
+            <li><i class="fas fa-check"></i> NET30 billing available</li>
+            <li><i class="fas fa-check"></i> Dedicated account manager</li>
+          </ul>
+          <div class="service-footer">
+            <span class="service-price">Custom pricing</span>
+            <a href="contact.html" class="btn btn-primary btn-sm">Get Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=600&q=80" alt="Event Catering" loading="lazy" />
+        </div>
+        <div class="service-body">
+          <div class="service-icon"><i class="fas fa-glass-cheers"></i></div>
+          <h3>Event Catering Supply</h3>
+          <p>BBQs, weddings, corporate events. We supply the freshest, highest-quality meat for any occasion — with full logistics support.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> Minimum 20 lbs order</li>
+            <li><i class="fas fa-check"></i> Custom cut specifications</li>
+            <li><i class="fas fa-check"></i> Event day delivery</li>
+            <li><i class="fas fa-check"></i> Chef consultation available</li>
+          </ul>
+          <div class="service-footer">
+            <span class="service-price">From $299/event</span>
+            <a href="contact.html" class="btn btn-primary btn-sm">Plan Event</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80" alt="Meal Prep Service" loading="lazy" />
+        </div>
+        <div class="service-body">
+          <div class="service-icon"><i class="fas fa-utensils"></i></div>
+          <h3>Meal Prep Package</h3>
+          <p>Pre-portioned, ready-to-cook cuts sized for meal prep containers. A 5-day cook plan and macro breakdown included with every delivery.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> 6 oz &amp; 8 oz precision cuts</li>
+            <li><i class="fas fa-check"></i> Macro nutrition labeling</li>
+            <li><i class="fas fa-check"></i> 5-day meal plan guide</li>
+            <li><i class="fas fa-check"></i> Lean protein focused</li>
+          </ul>
+          <div class="service-footer">
+            <span class="service-price">From $79/week</span>
+            <a href="service-details.html" class="btn btn-primary btn-sm">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: PRICING -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header text-center" data-aos="fade-up" style="margin-bottom:56px;">
+      <span class="section-tag">Pricing Plans</span>
+      <h2 class="section-title">Simple, Transparent Pricing</h2>
+      <p class="section-desc">No hidden fees. No contracts. Just the best meat at the best price. Cancel or change plans anytime.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card" data-aos="fade-up">
+        <div class="pricing-plan">Starter</div>
+        <div class="pricing-title">Classic Box</div>
+        <div style="margin:16px 0;"><span class="pricing-price">$79</span><span class="pricing-period">/delivery</span></div>
+        <div class="pricing-desc">Perfect for individuals or couples. 5–6 cuts, 6–8 lbs total.</div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> 5–6 premium cuts</li>
+          <li><i class="fas fa-check"></i> 6–8 lbs of meat</li>
+          <li><i class="fas fa-check"></i> 2 protein types</li>
+          <li><i class="fas fa-check"></i> Recipe cards</li>
+          <li><i class="fas fa-check"></i> Free delivery</li>
+          <li><i class="fas fa-times" style="color:var(--text-light);"></i> Custom cuts</li>
+          <li><i class="fas fa-times" style="color:var(--text-light);"></i> Butcher notes</li>
+        </ul>
+        <a href="login.html#register" class="btn btn-outline" style="width:100%;justify-content:center;">Get Started</a>
+      </div>
+      <div class="pricing-card popular" data-aos="fade-up" data-aos-delay="100">
+        <div class="pricing-plan" style="color:var(--primary);">Most Popular</div>
+        <div class="pricing-title">Family Box</div>
+        <div style="margin:16px 0;"><span class="pricing-price">$129</span><span class="pricing-period">/delivery</span></div>
+        <div class="pricing-desc">Feeds a family of 4–6. 8–10 cuts, 12–15 lbs total with mix of proteins.</div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> 8–10 premium cuts</li>
+          <li><i class="fas fa-check"></i> 12–15 lbs of meat</li>
+          <li><i class="fas fa-check"></i> 4 protein types</li>
+          <li><i class="fas fa-check"></i> Recipe cards</li>
+          <li><i class="fas fa-check"></i> Free delivery</li>
+          <li><i class="fas fa-check"></i> Basic customization</li>
+          <li><i class="fas fa-times" style="color:var(--text-light);"></i> Butcher consultation</li>
+        </ul>
+        <a href="login.html#register" class="btn btn-primary" style="width:100%;justify-content:center;">Get Family Box</a>
+      </div>
+      <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="pricing-plan">Premium</div>
+        <div class="pricing-title">Custom Box</div>
+        <div style="margin:16px 0;"><span class="pricing-price">$179</span><span class="pricing-period">/delivery</span></div>
+        <div class="pricing-desc">Full customization. Build your perfect box from 50+ cuts. 15–20 lbs total.</div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> 50+ cuts to choose</li>
+          <li><i class="fas fa-check"></i> 15–20 lbs of meat</li>
+          <li><i class="fas fa-check"></i> All protein types</li>
+          <li><i class="fas fa-check"></i> Recipe cards</li>
+          <li><i class="fas fa-check"></i> Priority delivery</li>
+          <li><i class="fas fa-check"></i> Full customization</li>
+          <li><i class="fas fa-check"></i> Butcher consultation</li>
+        </ul>
+        <a href="login.html#register" class="btn btn-outline" style="width:100%;justify-content:center;">Customize Your Box</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: HOW TO ORDER -->
+<section class="section">
+  <div class="container">
+    <div class="section-header text-center" data-aos="fade-up" style="margin-bottom:56px;">
+      <span class="section-tag">Get Started</span>
+      <h2 class="section-title">How to Order in 3 Steps</h2>
+    </div>
+    <div class="stack-768" style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;" data-aos="fade-up">
+      <div style="text-align:center;padding:40px 28px;background:var(--surface);border-radius:var(--radius-lg);border:1px solid var(--border);">
+        <div style="width:80px;height:80px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.8rem;font-weight:800;font-family:var(--font-head);margin:0 auto 20px;">1</div>
+        <h3 style="font-size:1.15rem;margin-bottom:12px;">Create Your Account</h3>
+        <p style="font-size:0.9rem;color:var(--text-muted);">Sign up in 60 seconds. No credit card required to browse plans.</p>
+      </div>
+      <div style="text-align:center;padding:40px 28px;background:var(--surface);border-radius:var(--radius-lg);border:1px solid var(--border);">
+        <div style="width:80px;height:80px;background:linear-gradient(135deg,var(--accent),#e8a000);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#221a00;font-size:1.8rem;font-weight:800;font-family:var(--font-head);margin:0 auto 20px;">2</div>
+        <h3 style="font-size:1.15rem;margin-bottom:12px;">Choose Your Plan</h3>
+        <p style="font-size:0.9rem;color:var(--text-muted);">Pick a curated box or use our custom builder. Set your delivery frequency.</p>
+      </div>
+      <div style="text-align:center;padding:40px 28px;background:var(--surface);border-radius:var(--radius-lg);border:1px solid var(--border);">
+        <div style="width:80px;height:80px;background:linear-gradient(135deg,var(--red-meat),#e74c3c);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.8rem;font-weight:800;font-family:var(--font-head);margin:0 auto 20px;">3</div>
+        <h3 style="font-size:1.15rem;margin-bottom:12px;">Enjoy Fresh Delivery</h3>
+        <p style="font-size:0.9rem;color:var(--text-muted);">Your box arrives on your chosen day, perfectly packed and ready to cook.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: FAQ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header text-center" data-aos="fade-up" style="margin-bottom:56px;">
+      <span class="section-tag">FAQ</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+    <div style="max-width:800px;margin:0 auto;" data-aos="fade-up">
+      <div class="faq-item">
+        <div class="faq-question"><span class="faq-q-text">Can I pause or skip a delivery?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Yes! You can skip or pause your subscription at any time from your Subscriber Dashboard. We just need 48 hours notice before your next scheduled delivery date.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span class="faq-q-text">How is the meat kept fresh during delivery?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Every order is packed in our eco-friendly wool-lined insulated boxes with dry ice pellets. This keeps your meat safely below 40°F for up to 24 hours after delivery — even in summer heat.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span class="faq-q-text">What if I'm not satisfied with my order?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-answer"><div class="faq-answer-inner">We stand behind every box 100%. If you're not satisfied for any reason, contact us within 48 hours and we'll either replace the item or issue a full credit to your account — no questions asked.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span class="faq-q-text">Do you deliver to my area?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-answer"><div class="faq-answer-inner">We currently deliver to 8 states in the Pacific Northwest and West Coast. Enter your zip code during checkout to confirm availability. We're expanding to new regions every quarter.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span class="faq-q-text">Can I change my subscription plan?</span><i class="fas fa-plus faq-icon"></i></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Absolutely. You can upgrade, downgrade or completely change your subscription plan at any time from your dashboard. Changes take effect on your next billing cycle.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: CTA -->
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-inner" data-aos="fade-up">
+      <div class="cta-content">
+        <span class="section-tag light">Ready to Start?</span>
+        <h2 class="cta-title">Your First Box is 25% Off</h2>
+        <p class="cta-desc">Join thousands of families enjoying premium farm-fresh meat delivered weekly. No contracts, cancel anytime.</p>
+        <div class="cta-features">
+          <span><i class="fas fa-check"></i> Free first delivery</span>
+          <span><i class="fas fa-check"></i> 25% off first box</span>
+          <span><i class="fas fa-check"></i> No commitment</span>
+        </div>
+        <div class="cta-actions"><a href="login.html#register" class="btn btn-white btn-lg">Claim Your Discount</a><a href="contact.html" class="btn btn-outline-white btn-lg">Ask Us Anything</a></div>
+      </div>
+      <div class="cta-image"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Premium meat box" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon"><i class="fas fa-drumstick-bite"></i></span>
+        <span class="logo-text">Farm<strong>Fresh</strong> Meats</span>
+      </a>
+      <p>Premium farm-to-door meat delivery. Local. Fresh. Sustainable.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="home2.html">Home 2</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="services.html">Meat Box Subscription</a></li>
+        <li><a href="services.html">Custom Boxes</a></li>
+        <li><a href="services.html">Bulk Orders</a></li>
+        <li><a href="services.html">Doorstep Delivery</a></li>
+        <li><a href="services.html">Corporate Orders</a></li>
+      </ul>
+    </div>
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Get weekly recipes, farm updates and exclusive subscriber deals.</p>
+      <form class="newsletter-form" id="footerNewsletter">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+      <div class="footer-contact-info">
+        <p><i class="fas fa-phone"></i> +1 (800) 555-FARM</p>
+        <p><i class="fas fa-envelope"></i> hello@farmfreshmeats.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Portland, Oregon 97201</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; 2026 FarmFresh Meats. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+<script src="js/main.js"></script>
+</body>
+</html>
