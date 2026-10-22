@@ -19,6 +19,7 @@
       display: flex;
       align-items: center;
       padding-top: var(--navbar-h);
+      padding-bottom: 100px;
       position: relative;
       overflow: hidden;
     }
@@ -32,17 +33,18 @@
       right: -200px;
       border-radius: 50%;
     }
-    .niche-hero-content { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 100%; }
+    .niche-hero-content { position: relative; z-index: 2; text-align: left; display: flex; flex-direction: column; align-items: flex-start; width: 100%; max-width: 100%; }
     .niche-hero-content > * { max-width: 100%; }
     .niche-hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); color: #fff; margin-bottom: 20px; }
-    .niche-hero p { font-size: 1.15rem; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto 40px; }
+    .niche-hero p { font-size: 1.15rem; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 0 40px; }
     .niche-tabs-hero {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
       margin-bottom: 48px;
     }
+    .niche-hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-start; }
     .niche-tab-btn {
       display: flex;
       align-items: center;
@@ -175,7 +177,7 @@
     }
   </style>
 </head>
-<body>
+<body class="page-home">
 
 <!-- NAVBAR (same) -->
 <nav class="navbar" id="navbar">
@@ -223,7 +225,7 @@
           <button class="niche-tab-btn"><i class="fas fa-glass-cheers"></i> Events</button>
           <button class="niche-tab-btn"><i class="fas fa-boxes"></i> Bulk</button>
         </div>
-        <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+        <div class="niche-hero-actions">
           <a href="login.html#register" class="btn btn-white btn-lg">Find My Plan</a>
           <a href="services.html" class="btn btn-ghost btn-lg">Compare Plans</a>
         </div>
